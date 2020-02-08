@@ -3,4 +3,4 @@
 #### Технологии: Maven, MySQL, Spring Framework, Angular
 #### Среда разработки: IntelliJ IDEA  	 
 
-[Documentation](https://github.com/RSlabodchikov/defenestratio/blob/documentation/Documentation/SRS.md#2.2)
+[Documentation](https://github.com/RSlabodchikov/defenestratio/blob/documentation/Documentation/SRS.md)
