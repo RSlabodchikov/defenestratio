@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`users` (
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`profiles` (
                                                           `id` VARCHAR(60) NOT NULL,
-                                                          `firstname` VARCHAR(45) NULL,
-                                                          `lastname` VARCHAR(45) NULL,
+                                                          `first_name` VARCHAR(45) NULL,
+                                                          `last_name` VARCHAR(45) NULL,
                                                           `total_points` INT NULL,
                                                           `rating` INT NULL,
                                                           `user_id` VARCHAR(60) NOT NULL,
@@ -54,7 +54,8 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`roles` (
 CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge` (
                                                            `id` VARCHAR(60) NOT NULL,
                                                            `name` VARCHAR(45) NULL,
-                                                           `description` TEXT(200) NULL,
+                                                           `shortDescription` TEXT(256) NULL,
+                                                           `fullDescription` TEXT(1024) NULL,
                                                            `level` INT NULL,
                                                            `points` INT NULL,
                                                            PRIMARY KEY (`id`))
