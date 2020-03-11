@@ -22,4 +22,11 @@ public class User {
     @Column(name = "disabled")
     private Boolean disabled;
 
+    @OneToOne
+    @JoinColumn(name = "profile_id", referencedColumnName = "id")
+    private Profile profile;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
 }

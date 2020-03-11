@@ -16,10 +16,10 @@ public class Challenge {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "shortDescription")
+    @Column(name = "short_description")
     private String shortDescription;
 
-    @Column(name = "fullDescription")
+    @Column(name = "full_description")
     private String fullDescription;
 
     @Column(name = "level")

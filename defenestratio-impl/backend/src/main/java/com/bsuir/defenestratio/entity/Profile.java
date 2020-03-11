@@ -24,8 +24,4 @@ public class Profile {
 
     @Column(name = "rating")
     private Integer rating;
-
-    @Column(name = "user_id")
-    private Integer userId;
-
 }
