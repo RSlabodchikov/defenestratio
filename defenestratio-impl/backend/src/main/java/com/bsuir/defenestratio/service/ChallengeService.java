@@ -3,13 +3,16 @@ package com.bsuir.defenestratio.service;
 import com.bsuir.defenestratio.entity.Challenge;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ChallengeService {
 
-    Optional<Challenge> get(Long id);
+    void saveChallenge(Challenge challenge);
 
-    void save(Challenge challenge);
+    List<Challenge> findAllChallenges();
+
+    Challenge findChallengeById(Long challengeId);
+
+    void deleteChallengeById(Long challengeId);
 
     List<Challenge> findAll(int offset, int limit);
 
