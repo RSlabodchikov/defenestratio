@@ -1,21 +1,17 @@
 package com.bsuir.defenestratio.entity;
 
-import lombok.Data;
+public enum Role {
+    ADMIN("admin"),
+    CLIENT("client"),
+    MENTOR("mentor");
 
-import javax.persistence.*;
+    private String role;
 
-@Entity
-@Table(name = "roles")
-@Data
-public class Role {
+    Role(String role) {
+        this.role = role;
+    }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "description")
-    private String description;
+    public String getRole() {
+        return role;
+    }
 }

@@ -26,7 +26,6 @@ public class User {
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private Profile profile;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    @Enumerated(EnumType.ORDINAL)
+    private Role ROLE;
 }
