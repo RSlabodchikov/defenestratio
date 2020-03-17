@@ -26,7 +26,7 @@ public class UserChallenge {
     @Column(name = "challenge_id")
     private Long challengeId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "result_id", referencedColumnName = "id")
     private ChallengeResult challengeResult;
 }

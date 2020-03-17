@@ -7,7 +7,7 @@ USE `defenestratio`;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge`
 (
-    `id`          INT(11) NOT NULL,
+    `id`          INT(11) NOT NULL AUTO_INCREMENT,
     `name`        VARCHAR(45) NULL DEFAULT NULL,
     `short_description` varchar(255)    NULL DEFAULT NULL,
     `full_description` varchar(255)    NULL DEFAULT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`images`
 (
-    `id`      INT(11) NOT NULL,
+    `id`      INT(11) NOT NULL AUTO_INCREMENT,
     `name`    VARCHAR(45) NULL DEFAULT NULL,
     `type`    VARCHAR(45) NULL DEFAULT NULL,
     `picture` LONGBLOB    NULL DEFAULT NULL,
@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`images`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge_results`
 (
-    `id`       INT(11) NOT NULL,
-    `image_id` INT(11) NOT NULL,
+    `id`       INT(11) NOT NULL AUTO_INCREMENT,
+    `image_id` INT(11) NULL,
     `approved` TINYINT(1)  NOT NULL,
     `comment`  VARCHAR(45) NULL     DEFAULT NULL,
     PRIMARY KEY (`id`),
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge_results`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`profiles`
 (
-    `id`           INT(11) NOT NULL,
+    `id`           INT(11) NOT NULL AUTO_INCREMENT,
     `first_name`    VARCHAR(45) NULL DEFAULT NULL,
     `last_name`     VARCHAR(45) NULL DEFAULT NULL,
     `total_points` INT(11)     NULL DEFAULT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`profiles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`users`
 (
-    `id`         INT(11) NOT NULL,
+    `id`         INT(11) NOT NULL AUTO_INCREMENT,
     `username`   VARCHAR(45) NOT NULL,
     `password`   VARCHAR(45) NOT NULL,
     `role`       VARCHAR(60) NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`user_challenges`
 (
-    `id`           INT(11) NOT NULL,
+    `id`           INT(11) NOT NULL AUTO_INCREMENT,
     `user_id`      INT(11) NOT NULL,
     `challenge_id` INT(11) NOT NULL,
     `status`       VARCHAR(45) NOT NULL,

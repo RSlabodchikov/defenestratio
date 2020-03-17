@@ -6,14 +6,13 @@ import java.util.List;
 
 public interface ChallengeService {
 
-    void saveChallenge(Challenge challenge);
+    Challenge createChallenge(Challenge challenge);
+
+    void updateChallenge(Challenge challenge);
 
     List<Challenge> findAllChallenges();
 
     Challenge findChallengeById(Long challengeId);
 
-    void deleteChallengeById(Long challengeId);
-
-    List<Challenge> findAll(int offset, int limit);
-
+    void deleteChallenge(Long challengeId);
 }

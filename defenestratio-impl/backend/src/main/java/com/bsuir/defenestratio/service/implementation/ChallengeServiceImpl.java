@@ -1,12 +1,12 @@
 package com.bsuir.defenestratio.service.implementation;
 
 import com.bsuir.defenestratio.entity.Challenge;
+import com.bsuir.defenestratio.exceptions.NotFoundException;
 import com.bsuir.defenestratio.jpa.ChallengeRepository;
 import com.bsuir.defenestratio.service.ChallengeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ChallengeServiceImpl implements ChallengeService {
@@ -18,8 +18,8 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
-    public void saveChallenge(Challenge challenge) {
-        challengeRepository.save(challenge);
+    public Challenge createChallenge(Challenge challenge) {
+        return challengeRepository.save(challenge);
     }
 
     @Override
@@ -28,17 +28,18 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
+    public void updateChallenge(Challenge challenge) {
+        challengeRepository.save(challenge);
+    }
+
+    @Override
     public Challenge findChallengeById(Long challengeId) {
-        return challengeRepository.findChallengeById(challengeId);
+        return challengeRepository.findById(challengeId).orElseThrow(
+                () -> new NotFoundException(String.format("Cannot found challenge with id %s", challengeId)));
     }
 
     @Override
-    public void deleteChallengeById(Long challengeId) {
-        challengeRepository.deleteChallengeById(challengeId);
-    }
+    public void deleteChallenge(Long challengeId) {
 
-    @Override
-    public List<Challenge> findAll(int offset, int limit) {
-        return null;
     }
 }

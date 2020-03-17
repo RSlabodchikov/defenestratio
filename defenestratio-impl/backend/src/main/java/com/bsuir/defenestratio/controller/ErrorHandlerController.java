@@ -1,6 +1,7 @@
 package com.bsuir.defenestratio.controller;
 
-import com.bsuir.defenestratio.exceptions.ChallengeNotFoundException;
+import com.bsuir.defenestratio.exceptions.CannotBlockUserException;
+import com.bsuir.defenestratio.exceptions.NotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,15 @@ public class ErrorHandlerController {
         headers.add("Content-Type", "application/problem+json");
     }
 
-    @ExceptionHandler(ChallengeNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     private ResponseEntity handleChallengeNotFoundException(
-            final ChallengeNotFoundException ex) {
+            final NotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), headers, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CannotBlockUserException.class)
+    private ResponseEntity handleCannotBlockUserException(
+            final CannotBlockUserException ex) {
+        return new ResponseEntity<>(ex.getMessage(), headers, HttpStatus.FORBIDDEN);
     }
 }

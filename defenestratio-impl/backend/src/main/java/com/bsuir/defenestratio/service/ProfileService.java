@@ -3,7 +3,7 @@ package com.bsuir.defenestratio.service;
 import com.bsuir.defenestratio.entity.Profile;
 
 public interface ProfileService {
+    Profile findProfile(Long userId);
 
-    Profile getProfile(Long id);
-
+    void updateProfile(Profile profile);
 }

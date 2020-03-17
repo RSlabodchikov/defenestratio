@@ -5,14 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserChallengeRepository extends JpaRepository<UserChallenge, Long> {
     List<UserChallenge> findAllByUserId(Long userId);
 
-    UserChallenge findUserChallengeByUserIdAndChallengeId(Long userId, Long challengeId);
+    Optional<UserChallenge> findByChallengeIdAndUserId(Long challengeId, Long userId);
 
-    void deleteAllByUserId(Long userId);
+    void deleteByUserIdAndChallengeId(Long userId, Long challengeId);
 
-    void deleteUserChallengeByUserIdAndChallengeId(Long userId, Long challengeId);
+    void deleteByUserId(Long userId);
 }

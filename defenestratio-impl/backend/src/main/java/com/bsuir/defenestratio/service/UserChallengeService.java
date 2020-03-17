@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface UserChallengeService {
 
-    void saveUserChallenge(UserChallenge userChallenge);
+    UserChallenge createUserChallenge(UserChallenge userChallenge);
 
-    List<UserChallenge> findAllUserChallengesByUserId(Long userId);
+    List<UserChallenge> findAllUserChallenges(Long userId);
 
-    UserChallenge findUserChallengeByUserIdAndChallengeId(Long userId, Long challengeId);
+    UserChallenge findUserChallengeById(Long userId, Long challengeId);
 
-    void deleteUserChallengeByUserIdAndChallengeId(Long userId, Long challengeId);
+    void deleteUserChallenge(Long userId, Long challengeId);
 
-    void deleteUserChallengesByUserId(Long challengeId);
+    void deleteAllUserChallenges(Long userId);
 }

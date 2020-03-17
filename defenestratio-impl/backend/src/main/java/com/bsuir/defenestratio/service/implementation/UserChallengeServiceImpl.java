@@ -1,6 +1,7 @@
 package com.bsuir.defenestratio.service.implementation;
 
 import com.bsuir.defenestratio.entity.UserChallenge;
+import com.bsuir.defenestratio.exceptions.NotFoundException;
 import com.bsuir.defenestratio.jpa.UserChallengeRepository;
 import com.bsuir.defenestratio.service.UserChallengeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +20,28 @@ public class UserChallengeServiceImpl implements UserChallengeService {
     }
 
     @Override
-    public void saveUserChallenge(UserChallenge userChallenge) {
-        userChallengeRepository.save(userChallenge);
+    public UserChallenge createUserChallenge(UserChallenge userChallenge) {
+        return userChallengeRepository.save(userChallenge);
     }
 
     @Override
-    public List<UserChallenge> findAllUserChallengesByUserId(Long userId) {
+    public List<UserChallenge> findAllUserChallenges(Long userId) {
         return userChallengeRepository.findAllByUserId(userId);
     }
 
     @Override
-    public UserChallenge findUserChallengeByUserIdAndChallengeId(Long userId, Long challengeId) {
-        return userChallengeRepository.findUserChallengeByUserIdAndChallengeId(userId, challengeId);
+    public UserChallenge findUserChallengeById(Long userId, Long challengeId) {
+        return userChallengeRepository.findByChallengeIdAndUserId(challengeId, userId)
+                .orElseThrow(() -> new NotFoundException("Cannot found user challenge"));
     }
 
     @Override
-    public void deleteUserChallengesByUserId(Long userId) {
-        userChallengeRepository.deleteAllByUserId(userId);
+    public void deleteUserChallenge(Long userId, Long challengeId) {
+        userChallengeRepository.deleteByUserIdAndChallengeId(userId, challengeId);
     }
 
     @Override
-    public void deleteUserChallengeByUserIdAndChallengeId(Long userId, Long challengeId) {
-        userChallengeRepository.deleteUserChallengeByUserIdAndChallengeId(userId, challengeId);
+    public void deleteAllUserChallenges(Long userId) {
+        userChallengeRepository.deleteByUserId(userId);
     }
 }
