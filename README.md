@@ -96,7 +96,7 @@
 ![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/5.png) <br>
 
 ### As is architecture:<a name="as_is"/></a>
-[Диаграмма классов](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/class%20diagram.png) <br>
+[Диаграмма классов](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/class-diagram.png) <br>
 
 ## Часть 3 <a name="part3"/></a>
 
