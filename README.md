@@ -3,7 +3,7 @@
 #### Технологии: Maven, MySQL, Spring Framework, Angular
 #### Среда разработки: IntelliJ IDEA  	 
 
-[Documentation](https://github.com/RSlabodchikov/defenestratio/blob/documentation/Documentation/SRS.md)
+[Documentation](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/SRS.md)
 
 Архитектура
 ### Содержание
@@ -87,16 +87,16 @@
 ## Часть 2 <a name="part2"/></a>
 
 ### To Be Архитектура: <a name="to_be"></a>
-Архитектурное решение команды по реализации идеи можно увидеть на [структурной схеме](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/structure.png) <br>
+Архитектурное решение команды по реализации идеи можно увидеть на [структурной схеме](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/structure.png) <br>
 Наглядный пример желаемого GUI приведен с помощью мокапов<br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/1.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/2.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/3.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/4.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/5.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/1.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/2.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/3.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/4.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/5.png) <br>
 
 ### As is architecture:<a name="as_is"/></a>
-[Диаграмма классов](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/class%20diagram.png) <br>
+[Диаграмма классов](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/class%20diagram.png) <br>
 
 ## Часть 3 <a name="part3"/></a>
 
