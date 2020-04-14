@@ -24,9 +24,28 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/styles/fontawesome-free/css/all.min.css",
+              "node_modules/magnific-popup/dist/magnific-popup.css",
+              "src/assets/styles/creative.min.css",
+
+              "src/assets/styles/font-awesome-4.7.0/css/font-awesome.min.css",
+              "src/assets/styles/animate.css",
+              "src/assets/styles/hamburgers.min.css",
+              "src/assets/styles/select2.min.css",
+              "src/assets/styles/util.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js",
+              "node_modules/magnific-popup/dist/jquery.magnific-popup.min.js",
+              "src/assets/scripts/js/creative.min.js",
+
+              "src/assets/scripts/js/select2.min.js",
+
+              "src/assets/scripts/js/main.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -53,8 +72,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "60kb",
+                  "maximumError": "100kb"
                 }
               ]
             }
@@ -120,6 +139,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "frontend"
 }
