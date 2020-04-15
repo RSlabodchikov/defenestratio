@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChallengeModel} from "../../models/challenge.model";
 import {ChallengeService} from "../../services/challenge.service";
 import {Router} from "@angular/router";
+import {sleep} from "sleep-ts";
 
 @Component({
   selector: 'app-challenges',
@@ -10,7 +11,8 @@ import {Router} from "@angular/router";
 })
 export class ChallengesComponent implements OnInit {
 
-  private challenges: ChallengeModel[];
+  private challenges: ChallengeModel[] = [];
+  private userId: string = "1";
   private challengesLevel1: ChallengeModel[] = [];
   private challengesLevel2: ChallengeModel[] = [];
   private challengesLevel3: ChallengeModel[] = [];
@@ -21,7 +23,11 @@ export class ChallengesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.challenges = this.challengeService.getAllChallenges();
+    if (this.userId != null && this.userId.length != 0) {
+      this.challenges = this.challengeService.getAllChallengesAvailableForUser(this.userId);
+    } else {
+      this.challenges = this.challengeService.getAllChallenges();
+    }
     this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
     this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
     this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");

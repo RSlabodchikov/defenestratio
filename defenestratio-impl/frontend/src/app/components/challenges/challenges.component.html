@@ -12,7 +12,9 @@
           <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
           <p class="text-muted mb-3"> {{challenge.fullDescription}}</p>
           <p class="text-muted mb-2"> {{challenge.points}} points</p>
-          <button type="button" (click)="addChallenge('1', challenge.id)" class="btn btn-dark">Join</button>
+          <div *ngIf="userId != null && userId.length != 0">
+            <button type="button" (click)="addChallenge(userId, challenge.id)" class="btn btn-dark">Join</button>
+          </div>
         </li>
       </ul>
     </div>
@@ -27,7 +29,9 @@
           <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
           <p class="text-muted mb-3"> {{challenge.fullDescription}}</p>
           <p class="text-muted mb-2"> {{challenge.points}} points</p>
-          <button type="button" (click)="addChallenge('1', challenge.id)" class="btn btn-dark">Join</button>
+          <div *ngIf="userId != null && userId.length != 0">
+            <button type="button" (click)="addChallenge(userId, challenge.id)" class="btn btn-dark">Join</button>
+          </div>
         </li>
       </ul>
     </div>
@@ -42,7 +46,9 @@
           <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
           <p class="text-muted mb-3"> {{challenge.fullDescription}}</p>
           <p class="text-muted mb-2"> {{challenge.points}} points</p>
-          <button type="button" (click)="addChallenge('1', challenge.id)" class="btn btn-dark">Join</button>
+          <div *ngIf="userId != null && userId.length != 0">
+            <button type="button" (click)="addChallenge(userId, challenge.id)" class="btn btn-dark">Join</button>
+          </div>
         </li>
       </ul>
     </div>

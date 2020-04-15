@@ -1,5 +1,6 @@
 package com.bsuir.defenestratio.controller;
 
+import com.bsuir.defenestratio.dao.ChallengeDao;
 import com.bsuir.defenestratio.entity.Challenge;
 import com.bsuir.defenestratio.service.ChallengeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,23 @@ import java.util.List;
 public class ChallengeController {
 
     private ChallengeService challengeService;
+    private ChallengeDao challengeDao;
 
     @Autowired
-    public ChallengeController(ChallengeService challengeService) {
+    public ChallengeController(ChallengeService challengeService, ChallengeDao challengeDao) {
         this.challengeService = challengeService;
+        this.challengeDao = challengeDao;
     }
 
     @GetMapping
     public ResponseEntity findAll() {
         List<Challenge> challenges = challengeService.findAllChallenges();
+        return new ResponseEntity<>(challenges, HttpStatus.OK);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity findAllAvailableForUser(@RequestParam Long userId) {
+        List<Challenge> challenges = challengeDao.findAllChallengesAvailableForUser(userId);
         return new ResponseEntity<>(challenges, HttpStatus.OK);
     }
 
