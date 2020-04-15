@@ -6,6 +6,7 @@ import {APP_BASE_HREF} from "@angular/common";
 import {ChallengesComponent} from "./components/challenges/challenges.component";
 import {LoginComponent} from "./components/login/login.component";
 import {SignupComponent} from "./components/signup/signup.component";
+import {ChallengeService} from "./services/challenge.service";
 
 
 const routes: Routes = [
@@ -20,7 +21,10 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {useHash: false})],
   exports: [RouterModule],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}]
+  providers: [
+    {provide: APP_BASE_HREF, useValue: '/'},
+    ChallengeService
+    ]
 })
 export class AppRoutingModule {
 }

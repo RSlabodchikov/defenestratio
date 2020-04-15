@@ -3,10 +3,14 @@ package com.bsuir.defenestratio.service.implementation;
 import com.bsuir.defenestratio.entity.UserChallenge;
 import com.bsuir.defenestratio.exceptions.NotFoundException;
 import com.bsuir.defenestratio.jpa.UserChallengeRepository;
+import com.bsuir.defenestratio.service.ChallengeService;
 import com.bsuir.defenestratio.service.UserChallengeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,13 +18,22 @@ public class UserChallengeServiceImpl implements UserChallengeService {
 
     private UserChallengeRepository userChallengeRepository;
 
+    private ChallengeService challengeService;
+
     @Autowired
-    public UserChallengeServiceImpl(UserChallengeRepository userChallengeRepository) {
+    public UserChallengeServiceImpl(UserChallengeRepository userChallengeRepository, ChallengeService challengeService) {
         this.userChallengeRepository = userChallengeRepository;
+        this.challengeService = challengeService;
     }
 
     @Override
-    public UserChallenge createUserChallenge(UserChallenge userChallenge) {
+    public UserChallenge createUserChallenge(Long userId, Long challengeId) {
+        UserChallenge userChallenge = new UserChallenge();
+        userChallenge.setUserId(userId);
+        userChallenge.setChallengeId(challengeId);
+        userChallenge.setDueDate((java.sql.Date) new Date());
+        userChallenge.setStatus("In progress");
+
         return userChallengeRepository.save(userChallenge);
     }
 

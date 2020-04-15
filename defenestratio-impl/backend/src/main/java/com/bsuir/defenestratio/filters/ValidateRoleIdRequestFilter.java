@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
+
 public class ValidateRoleIdRequestFilter implements Filter {
 
     private static final String INVALID_ROLE_ID = "Invalid roleId %s";
@@ -24,7 +25,6 @@ public class ValidateRoleIdRequestFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) {
-        log.debug("ValidateRoleIdRequestFilter initialized");
     }
 
     @Override
@@ -44,23 +44,19 @@ public class ValidateRoleIdRequestFilter implements Filter {
         try {
             roleId = UUID.fromString(pathVariables[1]);
         } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
-            log.warn("RoleID not found in request URL {}", requestURI);
         }
         return roleId;
     }
 
     private void validateRoleId(UUID roleId) {
-        log.debug("Validating role id {}", roleId);
         Map<UUID, Role> roleNames = roleUtils.getAllRoleNames();
         if (!roleNames.containsKey(roleId)) {
             String message = String.format(INVALID_ROLE_ID, roleId);
-            log.error(message);
             throw new NotFoundException(message);
         }
     }
 
     @Override
     public void destroy() {
-        log.debug("ValidateRoleIdRequestFilter destroy");
     }
 }

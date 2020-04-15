@@ -46,8 +46,8 @@ public class UserChallengeController {
     @PostMapping
     public ResponseEntity createUserChallenge(
             @PathVariable(name = "userId") Long userId,
-            @RequestBody UserChallenge userChallenge) {
+            @RequestParam(name = "challengeId") Long challengeId) {
         return new ResponseEntity<>(
-                challengeService.createUserChallenge(userChallenge), HttpStatus.CREATED);
+                challengeService.createUserChallenge(userId, challengeId), HttpStatus.CREATED);
     }
 }

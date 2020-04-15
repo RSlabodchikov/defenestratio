@@ -6,43 +6,44 @@
     <h2 class="text-center mt-0">Challenges Lvl 1</h2>
     <hr class="divider my-4">
     <div class="row">
-      <ul>
-        <li class="">
-          <h3 class="h4 mb-3">Challenge #1</h3>
-          <p class="text-muted mb-3"> Откусить или лизнуть мыло.</p>
-        </li>
-        <li>
-          <h3 class="h4 mb-3">Challenge #2</h3>
-          <p class="text-muted mb-3">Покормить котов во дворе.</p>
-        </li>
-        <li>
-          <h3 class="h4 mb-3">Challenge #3</h3>
-          <p class="text-muted mb-3">Приготовить кофе, выйти с ним на улицу и предложить первому прохожему.</p>
-        </li>
-      </ul>
-    </div>
-
-    <h2 class="text-center mt-0">Challenges Lvl 2</h2>
-    <hr class="divider my-4">
-    <div class="row">
-      <ul>
-        <li class="">
-          <h3 class="h4 mb-3">Challenge #1</h3>
-          <p class="text-muted mb-3"> Нарисовать себе на лице усы и выйти на улицу.</p>
-        </li>
-        <li>
-          <h3 class="h4 mb-3">Challenge #2</h3>
-          <p class="text-muted mb-3">Купить в магазине 1 конфету, 1 сливу и 1 орех на развес и попросить большой пакет
-            на кассе.</p>
-        </li>
-        <li>
-          <h3 class="h4 mb-3">Challenge #3</h3>
-          <p class="text-muted mb-3">«Поспать» с подушкой и одеялом на лавочке во дворе 5 минут.</p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let challenge of challengesLevel1">
+          <h3 class="h4 mb-3">{{challenge.name}}</h3>
+          <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
+          <p class="text-muted mb-2"> {{challenge.points}} points</p>
+          <button type="button" class="btn btn-dark">Join</button>
         </li>
       </ul>
     </div>
   </div>
-
+  <div class="container">
+    <h2 class="text-center mt-0">Challenges Lvl 2</h2>
+    <hr class="divider my-4">
+    <div class="row">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let challenge of challengesLevel2">
+          <h3 class="h4 mb-3">{{challenge.name}}</h3>
+          <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
+          <p class="text-muted mb-2"> {{challenge.points}} points</p>
+          <button type="button" class="btn btn-dark">Join</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <h2 class="text-center mt-0">Challenges Lvl 3</h2>
+    <hr class="divider my-4">
+    <div class="row">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let challenge of challengesLevel3">
+          <h3 class="h4 mb-3">{{challenge.name}}</h3>
+          <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
+          <p class="text-muted mb-2"> {{challenge.points}} points</p>
+          <button type="button" (click)="addChallenge()" class="btn btn-dark">Join</button>
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>
 
 
