@@ -37,4 +37,8 @@ export class ChallengesComponent implements OnInit {
     return challengesLvl;
   }
 
+  addChallenge(userId: string, challengeId: string) {
+    this.challengeService.addUserChallenge(userId, challengeId);
+  }
+
 }

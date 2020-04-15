@@ -8,9 +8,8 @@ import com.bsuir.defenestratio.service.UserChallengeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -31,7 +30,12 @@ public class UserChallengeServiceImpl implements UserChallengeService {
         UserChallenge userChallenge = new UserChallenge();
         userChallenge.setUserId(userId);
         userChallenge.setChallengeId(challengeId);
-        userChallenge.setDueDate((java.sql.Date) new Date());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(calendar.getTime());
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+
+        userChallenge.setDueDate(new Date(calendar.getTime().getTime()));
         userChallenge.setStatus("In progress");
 
         return userChallengeRepository.save(userChallenge);

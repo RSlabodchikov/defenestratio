@@ -1,6 +1,5 @@
 package com.bsuir.defenestratio.controller;
 
-import com.bsuir.defenestratio.entity.UserChallenge;
 import com.bsuir.defenestratio.service.UserChallengeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
