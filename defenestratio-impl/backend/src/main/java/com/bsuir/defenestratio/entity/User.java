@@ -27,5 +27,6 @@ public class User {
     private Profile profile;
 
     @Enumerated(EnumType.STRING)
-    private Role ROLE;
+    @Column(name = "role")
+    private Role role;
 }

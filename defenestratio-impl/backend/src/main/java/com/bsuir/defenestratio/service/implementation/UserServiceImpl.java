@@ -4,24 +4,34 @@ import com.bsuir.defenestratio.entity.Profile;
 import com.bsuir.defenestratio.entity.User;
 import com.bsuir.defenestratio.exceptions.CannotBlockUserException;
 import com.bsuir.defenestratio.exceptions.NotFoundException;
+import com.bsuir.defenestratio.exceptions.UsernameDuplicateException;
 import com.bsuir.defenestratio.jpa.UserRepository;
 import com.bsuir.defenestratio.service.ProfileService;
 import com.bsuir.defenestratio.service.UserService;
+import com.bsuir.defenestratio.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UserServiceImpl implements UserService {
+@Service("userService")
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private UserRepository userRepository;
     private ProfileService profileService;
+    private BCryptPasswordEncoder encoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, ProfileService profileService) {
+    public UserServiceImpl(UserRepository userRepository,
+                           ProfileService profileService,
+                           BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.profileService = profileService;
+        this.encoder = encoder;
     }
 
     @Override
@@ -33,6 +43,14 @@ public class UserServiceImpl implements UserService {
         }
         user.setDisabled(true);
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findUserByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("Cannot find user with username %s", username));
+        } else return UserUtils.buildUserDetails(user);
     }
 
     @Override
@@ -54,5 +72,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserProfile(Profile profile) {
         profileService.updateProfile(profile);
+    }
+
+    @Override
+    public User save(User user) {
+        if (userRepository.existsByUsername(user.getUsername())) {
+            throw new UsernameDuplicateException(
+                    String.format("Cannot register user with this username, %s", user.getUsername()));
+        }
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
     }
 }

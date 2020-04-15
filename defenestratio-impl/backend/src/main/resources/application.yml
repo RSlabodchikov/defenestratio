@@ -8,8 +8,3 @@ spring:
     password: bananjikda1
     username: root
     url: jdbc:mysql://localhost:3306/defenestratio?useSSL=false
-defenestratio:
-  role:
-    admin: d181deee-e88b-48d5-a356-9c12a0824cc2
-    client: 2235eb08-6e04-484f-a451-cc2b10a42c9a
-    mentor: 6c8aeaff-fa7f-4270-96c9-a04f496809e8
