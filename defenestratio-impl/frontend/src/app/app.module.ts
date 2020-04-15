@@ -10,6 +10,9 @@ import {LoginComponent} from "./components/login/login.component";
 import {AngularTiltModule} from "angular-tilt";
 import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
+import {UserProfileComponent} from "./components/user-profile/user-profile.component";
+import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,12 +23,16 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     ChallengesComponent,
     SignupComponent,
-    FooterComponent
+    FooterComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularTiltModule
+    AngularTiltModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
