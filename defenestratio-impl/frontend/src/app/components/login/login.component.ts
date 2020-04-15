@@ -1,5 +1,5 @@
 import {AfterViewChecked, Component, ElementRef, OnInit} from '@angular/core';
-import "../../assets/scripts/js/tilt.jquery.min.js"
+import "../../../assets/scripts/js/tilt.jquery.min.js"
 import {Router} from "@angular/router";
 
 @Component({
