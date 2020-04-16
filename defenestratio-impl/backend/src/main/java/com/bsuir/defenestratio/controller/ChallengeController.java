@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/{roleId}/challenges")
 public class ChallengeController {
 
@@ -44,8 +44,9 @@ public class ChallengeController {
 
     @PostMapping
     public ResponseEntity createChallenge(@RequestBody Challenge challenge) {
-        return new ResponseEntity<>(
-                challengeService.createChallenge(challenge), HttpStatus.CREATED);
+        challengeService.createChallenge(challenge);
+        return new ResponseEntity<>("Challenge created"
+               , HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/update")

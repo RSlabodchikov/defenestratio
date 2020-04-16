@@ -40,6 +40,6 @@ public class ChallengeServiceImpl implements ChallengeService {
 
     @Override
     public void deleteChallenge(Long challengeId) {
-
+        challengeRepository.deleteById(challengeId);
     }
 }

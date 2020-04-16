@@ -10,7 +10,8 @@ import {LoginComponent} from "./components/login/login.component";
 import {AngularTiltModule} from "angular-tilt";
 import { SignupComponent } from './components/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HttpClientModule} from "@angular/common/http";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    AngularTiltModule
+    AngularTiltModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
