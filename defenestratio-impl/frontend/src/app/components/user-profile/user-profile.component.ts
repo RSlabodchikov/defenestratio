@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProfileService} from "../../services/profile-service/profile.service";
-import {Profile} from "../../models/profile/profile";
+import {Profile} from "../../models/profile";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {StorageService} from "../../services/storage.service";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-user-profile',
@@ -10,27 +12,27 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
+  user: User;
   profile: Profile = new Profile();
-  profiles: Profile[];
+
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required)
   });
-  //id: string = this.route.snapshot.paramMap.get('id')
 
   constructor(private router: Router,
               private profileService: ProfileService,
-              private route: ActivatedRoute) { }
-
-  ngOnInit() {
-    this.profileService.getOneProfile('1').subscribe(data => {
-      this.profile = data;
-    });
+              private route: ActivatedRoute,
+              private storageService: StorageService) {
   }
 
-  submit(){
-    if(this.form.valid){
+  ngOnInit() {
+    this.user = this.storageService.currentUser;
+    this.profile = this.user.profile;
+  }
+
+  submit() {
+    if (this.form.valid) {
       this.profile.firstName = this.firstName.value;
       this.profile.lastName = this.lastName.value;
       this.updateProfile();
@@ -38,7 +40,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    this.profileService.updateProfile(this.profile).subscribe(data => {
+    this.profileService.updateProfile(this.profile, this.user.id).subscribe(data => {
       this.redirect('/profile');
     });
   }
@@ -47,8 +49,12 @@ export class UserProfileComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-  get firstName() { return this.form.get('firstName'); }
+  get firstName() {
+    return this.form.get('firstName');
+  }
 
-  get lastName() { return this.form.get('lastName'); }
+  get lastName() {
+    return this.form.get('lastName');
+  }
 
 }

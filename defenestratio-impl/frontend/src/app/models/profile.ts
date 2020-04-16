@@ -2,6 +2,6 @@ export class Profile {
   id: string;
   firstName: string;
   lastName: string;
-  totalPoint: number;
+  totalPoints: number;
   rating: number;
 }
