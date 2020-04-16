@@ -12,6 +12,7 @@ import {SignupComponent} from './components/signup/signup.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./services/interceptor.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import {JwtInterceptor} from "./services/interceptor.service";
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    AngularTiltModule
+    AngularTiltModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

@@ -1,5 +1,7 @@
 package com.bsuir.defenestratio.service.implementation;
 
+import com.bsuir.defenestratio.entity.Profile;
+import com.bsuir.defenestratio.entity.Role;
 import com.bsuir.defenestratio.entity.User;
 import com.bsuir.defenestratio.service.AuthenticationService;
 import com.bsuir.defenestratio.service.UserService;
@@ -40,6 +42,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User register(User user) {
+        user.setRole(Role.CLIENT);
+        user.setDisabled(false);
+        user.setProfile(new Profile());
         User registeredUser = userService.save(user);
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(

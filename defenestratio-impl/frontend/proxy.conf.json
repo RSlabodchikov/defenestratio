@@ -1,11 +1,11 @@
 {
-  "/**": {
-    "target": {
-      "host": "localhost",
-      "protocol": "http:",
-      "port": 8081
-    },
+  "/api/*": {
+    "target": "http://localhost:8080",
     "secure": false,
-    "logLevel": "info"
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
   }
 }
