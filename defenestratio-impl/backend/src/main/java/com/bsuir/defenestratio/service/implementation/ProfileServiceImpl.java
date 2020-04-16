@@ -21,9 +21,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile findProfile(Long userId) {
-        Optional<Profile> profile = profileRepository.findByUserId(userId);
-        return profile.orElseThrow(() -> new NotFoundException(
-                String.format("Cannot found profile for user with id %s", userId)));
+        return profileRepository.findByUserId(userId).orElseThrow(() -> new NotFoundException(String.format("Cannot found profile for user with id %s", userId)));
     }
 
     @Override

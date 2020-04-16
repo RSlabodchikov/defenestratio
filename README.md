@@ -3,7 +3,7 @@
 #### Технологии: Maven, MySQL, Spring Framework, Angular
 #### Среда разработки: IntelliJ IDEA  	 
 
-[Documentation](https://github.com/RSlabodchikov/defenestratio/blob/documentation/Documentation/SRS.md)
+[Documentation](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/SRS.md)
 
 Архитектура
 ### Содержание
@@ -36,7 +36,7 @@
 ## Часть 1 <a name="part1"></a>
 
 ### 1. Тип приложения <a name="1"></a>
-Проект предполагает проектирование и создание веб-приложения для выполнения преимущественно c целью прохождения челленджей на языках Java, TypeScript, HTML, CSS с использованием фреймворков Angular, Spring.
+Проект предполагает проектирование и создание веб-приложения для прохождения челленджей в реальной жизни. Проект предполагает реализацию на языках Java, TypeScript, HTML, CSS с использованием фреймворков Angular, Spring.
 
 ### 2. Выбор стратегии развертывания <a name="2"></a>
 Нераспределённое развертывание приложения предполагается посредством возможностей браузера каждого конкретного устройства(как ПК, так и мобильных устройств различных ОС) по ссылке, на которую переходят пользователи.
@@ -49,17 +49,20 @@
 
 ### 4. Показатели качества <a name="4"></a>
 #### 4.1. Графический дизайн и взаимодействие с пользователем <a name="4.1"></a>
-##### 4.1.1. Стандартный дизайн <a name="4.1.1"></a>
-* В веб-приложении используется стандартный дизайн с пастельными тонами.
-* Вместо стандартной иконки Angular используется иконка, нарисованная дизайнером.
+##### 4.1.1. Дизайн <a name="4.1.1"></a>
+* В веб-приложении используется дизайн с пастельными тонами, которые не будут мешать пользователю сосредоточиться на выполнении челленджей, отвлекая его внимание яркими цветами.
+* Любой определенный бизнес-метод является вызываемым, т.е. создан не потому, что может понадобиться в будущем, а определен в соответствии с требованиями или необходим для реализации дизайна в выбранном архитектурном стиле.
+* Вместо стандартной иконки Angular используется иконка приложения Defenestratio, нарисованная дизайнером.
 ##### 4.1.2. Навигация <a name="4.1.2"></a>
 * В приложении поддерживается стандартная системная навигация с помощью кнопки "Назад" , для которой не используются какие-либо адаптированные экранные подсказки.
+* В приложении поддерживается навигация по основным страницам с помощью контекстного меню в верхней части экрана.
+* Навигации приложения свойственна простота, интуитивность и минимальные затраты на совершение действий для перемещения между страницами.
 ##### 4.1.3. Уведомления <a name="4.1.3"></a>
 * В приложении будут использоваться уведомления для того, чтобы сообщить пользователям о появлении новых челленджей и о необходимости подтверждения пройденных челленджей.
 #### 4.2. Функциональность <a name="4.2"></a>
 ##### 4.2.1. Права доступа <a name="4.2.1"></a>
 Приложение запрашивает минимум прав доступа:
-* Доступ к галереи пользователя
+* Доступ к галерее пользователя
 * Обработка личных данных
 * Отправка push-уведомлений
 ##### 4.2.2. Звук <a name="4.2.3"></a>
@@ -87,16 +90,16 @@
 ## Часть 2 <a name="part2"/></a>
 
 ### To Be Архитектура: <a name="to_be"></a>
-Архитектурное решение команды по реализации идеи можно увидеть на [структурной схеме](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/structure.png) <br>
+Архитектурное решение команды по реализации идеи можно увидеть на [структурной схеме](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/structure.png) <br>
 Наглядный пример желаемого GUI приведен с помощью мокапов<br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/1.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/2.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/3.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/4.png) <br>
-![](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/5.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/1.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/2.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/3.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/4.png) <br>
+![](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/5.png) <br>
 
 ### As is architecture:<a name="as_is"/></a>
-[Диаграмма классов](https://github.com/RSlabodchikov/defenestratio/blob/architecture/Documentation/Mockup/class%20diagram.png) <br>
+[Диаграмма классов](https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/Mockup/class-diagram.png) <br>
 
 ## Часть 3 <a name="part3"/></a>
 
