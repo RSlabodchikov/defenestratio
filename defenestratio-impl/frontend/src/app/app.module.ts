@@ -8,8 +8,11 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {ChallengesComponent} from './components/challenges/challenges.component';
 import {LoginComponent} from "./components/login/login.component";
 import {AngularTiltModule} from "angular-tilt";
-import { SignupComponent } from './components/signup/signup.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {SignupComponent} from './components/signup/signup.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {JwtInterceptor} from "./services/interceptor.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -27,7 +30,16 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    AngularTiltModule
+    AngularTiltModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin
-@RequestMapping(value = "/{roleId}/challenges")
+@RequestMapping(value = "/challenges")
 public class ChallengeController {
 
     private ChallengeService challengeService;

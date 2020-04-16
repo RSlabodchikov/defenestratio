@@ -5,13 +5,13 @@
         <img src="assets/img/img-04.png" alt="IMG">
       </div>
 
-      <form class="login100-form validate-form">
+      <form class="login100-form" [formGroup]="registrationFormGroup">
 					<span class="login100-form-title">
 						Sign Up
 					</span>
 
-        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-          <input class="input100" type="text" name="email" placeholder="Email">
+        <div class="wrap-input100 validate-input" data-validate="Valid username is required">
+          <input class="input100" type="text" formControlName="username" placeholder="Username">
           <span class="focus-input100"></span>
           <span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
@@ -19,23 +19,19 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Password is required">
-          <input class="input100" type="password" name="pass" placeholder="Password">
-          <span class="focus-input100"></span>
-          <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-        </div>
-        <!--TODO: Repeat password validation-->
-        <div class="wrap-input100 validate-input" data-validate="Repeat password">
-          <input class="input100" type="password" name="pass" placeholder="Repeat Password">
+          <input class="input100" type="password" formControlName="password" placeholder="Password">
           <span class="focus-input100"></span>
           <span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
         </div>
 
+        <div *ngIf="registrationFailed" class="error container-login100-form-btn text-primary">
+          Cannot register user with such username
+        </div>
+
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn">
+          <button class="login100-form-btn" (click)="onRegistrationSubmit()">
             Sign Up
           </button>
         </div>
