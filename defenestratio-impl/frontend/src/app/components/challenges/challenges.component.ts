@@ -23,14 +23,25 @@ export class ChallengesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.fillChallenges();
+  }
+
+  fillChallenges() {
     if (this.userId != null && this.userId.length != 0) {
-      this.challenges = this.challengeService.getAllChallengesAvailableForUser(this.userId);
+      this.challengeService.getAllChallengesAvailableForUser(this.userId).subscribe(response => {
+        this.challenges = response;
+        this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
+        this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
+        this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
+      });
     } else {
-      this.challenges = this.challengeService.getAllChallenges();
+      this.challengeService.getAllChallenges().subscribe(response => {
+        this.challenges = response;
+        this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
+        this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
+        this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
+      })
     }
-    this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
-    this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
-    this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
   }
 
   getChallengesByLvl(challenges: ChallengeModel[], level: string): ChallengeModel[] {
@@ -45,6 +56,8 @@ export class ChallengesComponent implements OnInit {
 
   addChallenge(userId: string, challengeId: string) {
     this.challengeService.addUserChallenge(userId, challengeId);
+    this.fillChallenges();
+    window.location.reload();
   }
 
 }

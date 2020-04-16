@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ChallengeModel} from "../models/challenge.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +16,14 @@ export class ChallengeService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAllChallenges(): ChallengeModel[] {
-    this.httpClient.get<ChallengeModel[]>(this.GET_ALL_CHALLENGES_URI).subscribe(response => {
-      this.challenges = response as ChallengeModel[];
-    });
-    return this.challenges;
+  getAllChallenges(): Observable<ChallengeModel[]> {
+    return this.httpClient.get<ChallengeModel[]>(this.GET_ALL_CHALLENGES_URI)
   }
 
-  getAllChallengesAvailableForUser(userId: string): ChallengeModel[] {
+  getAllChallengesAvailableForUser(userId: string): Observable<ChallengeModel[]> {
     let body = new HttpParams();
     body = body.set('userId', userId);
-    this.httpClient.get<ChallengeModel[]>(this.GET_ALL_CHALLENGES_FOR_USER_URI, {params: body}).subscribe(response => {
-      this.challenges = response as ChallengeModel[];
-    });
-    return this.challenges;
+    return this.httpClient.get<ChallengeModel[]>(this.GET_ALL_CHALLENGES_FOR_USER_URI, {params: body})
   }
 
   addUserChallenge(userId: string, challengeId: string) {
