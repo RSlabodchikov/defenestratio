@@ -7,9 +7,9 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class ChallengeService {
-  private GET_ALL_CHALLENGES_URI = "http://localhost:8080/2235eb08-6e04-484f-a451-cc2b10a42c9a/challenges";
-  private GET_ALL_CHALLENGES_FOR_USER_URI = "http://localhost:8080/2235eb08-6e04-484f-a451-cc2b10a42c9a/challenges/user";
-  private CREATE_USER_CHALLENGE_URI = "http://localhost:8080/2235eb08-6e04-484f-a451-cc2b10a42c9a/users/";
+  private GET_ALL_CHALLENGES_URI = "/api/challenges";
+  private GET_ALL_CHALLENGES_FOR_USER_URI = "/api/challenges/user";
+  private CREATE_USER_CHALLENGE_URI = "/api/users/";
 
   private challenges: ChallengeModel[] = [];
 

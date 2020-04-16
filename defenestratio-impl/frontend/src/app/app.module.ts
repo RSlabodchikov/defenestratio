@@ -13,7 +13,6 @@ import {FooterComponent} from './components/footer/footer.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {JwtInterceptor} from "./services/interceptor.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

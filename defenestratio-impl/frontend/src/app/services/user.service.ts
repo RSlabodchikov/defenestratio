@@ -8,8 +8,8 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class UserService {
-  loginUrl = '/api/login';
-  registrationUrl = '/api/register'
+  LOGIN_URL = '/api/login';
+  REGISTRATION_URL = '/api/register';
 
   constructor(private httpClient: HttpClient, private storageService: StorageService) {
   }
@@ -25,10 +25,10 @@ export class UserService {
   }
 
   login(user: User): Observable<HttpResponse<User>> {
-    return this.httpClient.post<any>(this.loginUrl, user, {observe: 'response', responseType: 'json'})
+    return this.httpClient.post<any>(this.LOGIN_URL, user, {observe: 'response', responseType: 'json'})
   }
 
   register(user: User): Observable<HttpResponse<User>> {
-    return this.httpClient.post<any>(this.registrationUrl, user, {observe: 'response', responseType: 'json'})
+    return this.httpClient.post<any>(this.REGISTRATION_URL, user, {observe: 'response', responseType: 'json'})
   }
 }
