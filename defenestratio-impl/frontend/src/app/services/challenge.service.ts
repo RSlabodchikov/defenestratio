@@ -50,4 +50,8 @@ export class ChallengeService {
     return this.httpClient.get<UserChallenge[]>(this.USER_CHALLENGES_URI + userId + "/challenges");
   }
 
+  removeUserChallenge(userId: string, challengeId: string): Observable<any> {
+    return this.httpClient.delete(this.USER_CHALLENGES_URI + userId + "/challenges/" + challengeId);
+  }
+
 }

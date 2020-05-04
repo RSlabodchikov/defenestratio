@@ -33,8 +33,7 @@ public class UserChallengeServiceImpl implements UserChallengeService {
         UserChallenge userChallenge = new UserChallenge();
         userChallenge.setUserId(userId);
         userChallenge.setChallenge(new Challenge(challengeId));
-        userChallenge.setChallengeResult(ChallengeResult.builder()
-                .approved(false).comment("Challenge accepted").build());
+        userChallenge.setChallengeResult(new ChallengeResult(false, "Challenge accepted"));
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(calendar.getTime());
