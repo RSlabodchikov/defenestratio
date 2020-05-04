@@ -4,6 +4,7 @@ import {ChallengeService} from "../../services/challenge.service";
 import {Router} from "@angular/router";
 import {StorageService} from "../../services/storage.service";
 import {UserService} from "../../services/user.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-challenges',
@@ -12,12 +13,20 @@ import {UserService} from "../../services/user.service";
 })
 export class ChallengesComponent implements OnInit {
 
+  private challenge: ChallengeModel;
   private challenges: ChallengeModel[] = [];
   private userId: string;
+  private roleId: string;
   private challengesLevel1: ChallengeModel[] = [];
   private challengesLevel2: ChallengeModel[] = [];
   private challengesLevel3: ChallengeModel[] = [];
-
+  form: FormGroup = new FormGroup({
+    name: new FormControl('', Validators.required),
+    shortDescription: new FormControl('',Validators.required),
+    fullDescription: new FormControl('',Validators.required),
+    points: new FormControl('',Validators.required),
+    level: new FormControl('',Validators.required)
+  });
 
   constructor(private challengeService: ChallengeService,
               private router: Router,
@@ -27,7 +36,12 @@ export class ChallengesComponent implements OnInit {
 
   ngOnInit() {
     if (this.userService.isAuthenticated()) {
+      console.log(this.storageService.currentUser);
+      console.log(this.storageService.currentUser.id);
       this.userId = this.storageService.currentUser.id;
+      this.roleId = this.storageService.currentUser.role;
+      console.log(this.userId);
+      console.log(this.roleId);
     }
     this.fillChallenges();
   }
@@ -36,6 +50,7 @@ export class ChallengesComponent implements OnInit {
     if (this.userService.isAuthenticated()) {
       this.challengeService.getAllChallengesAvailableForUser(this.userId).subscribe(response => {
         this.challenges = response;
+        this.challenge = this.challenges[0];
         this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
         this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
         this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
@@ -43,6 +58,7 @@ export class ChallengesComponent implements OnInit {
     } else {
       this.challengeService.getAllChallenges().subscribe(response => {
         this.challenges = response;
+        this.challenge = this.challenges[0];
         this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
         this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
         this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
@@ -66,4 +82,59 @@ export class ChallengesComponent implements OnInit {
     window.location.reload();
   }
 
+  deleteChallenge(challengeId: string): void {
+    this.challengeService.deleteChallenge(challengeId).subscribe(response => {
+      this.challengeService.getAllChallenges();
+    });
+  }
+
+  submit() {
+    if(this.form.valid) {
+      this.challenge.name = this.name.value;
+      this.challenge.shortDescription = this.shortDescription.value;
+      this.challenge.fullDescription = this.fullDescription.value;
+      this.challenge.level = this.level.value;
+      this.challenge.points = this.points.value;
+      this.editChallenge();
+    }
+  }
+
+  editChallenge() {
+    this.challengeService.updateChallenge(this.challenge).subscribe(reponse => {
+      location.reload();
+    });
+  }
+
+  saveChallenge2(challengeForSave: ChallengeModel) {
+    this.challenge = challengeForSave;
+    console.log(challengeForSave);
+  }
+
+  save() {
+    if(this.form.valid) {
+      this.challenge.id = this.challenges[this.challenges.length-1].id + 1;
+      this.challenge.name = this.name.value;
+      this.challenge.shortDescription = this.shortDescription.value;
+      this.challenge.fullDescription = this.fullDescription.value;
+      this.challenge.level = this.level.value;
+      this.challenge.points = this.points.value;
+      this.saveChallenge();
+    }
+  }
+
+  saveChallenge() {
+    this.challengeService.createChallenge(this.challenge).subscribe(response => {
+      location.reload();
+    })
+  }
+
+  get name() { return this.form.get('name'); }
+
+  get shortDescription() { return this.form.get('shortDescription'); }
+
+  get fullDescription() { return this.form.get('fullDescription'); }
+
+  get level() { return this.form.get('level'); }
+
+  get points() { return this.form.get('points'); }
 }
