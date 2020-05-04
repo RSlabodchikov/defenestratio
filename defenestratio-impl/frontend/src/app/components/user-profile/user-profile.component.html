@@ -86,18 +86,20 @@
 </section>
 
 <section class="page-section" id="challengeList">
-  <div class="container">
-    <h2 class="text-center mt-0">User challenges</h2>
-    <hr class="divider my-4">
+  <div class="container  col-lg-3">
+    <h2 class="text-center mt-3">User challenges</h2>
     <div class="row">
       <ul>
         <li class="" *ngFor="let challenge of userChallenges">
-          <h3 class="h4 mb-3 alert-primary">Challenge {{challenge.challenge.name}}</h3>
-          <p class="text-muted mb-3 alert-info">{{challenge.status}}</p>
+          <hr class=" divider my-4">
+          <h3 class="h4 mb-3 ">{{challenge.challenge.name}}</h3>
+          <p class="text-muted  mb-3">{{challenge.status}}</p>
           <p class="text-muted mb-3">comment: {{challenge.challengeResult.comment}}</p>
           <p class="text-muted mb-3">level: {{challenge.challenge.level}}</p>
           <p class="text-muted mb-3">points: {{challenge.challenge.points}}</p>
-          <button type="button" (click)="removeUserChallenge(challenge.challenge.id)" class="btn btn-dark">Cancel</button>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#challengeResult"
+             (click)="setChallenge(challenge)">Send result</button>
+          <button class="btn btn-dark" (click)="removeUserChallenge(challenge.challenge.id)" >Cancel</button>
         </li>
       </ul>
     </div>
@@ -127,5 +129,46 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade"  id="challengeResult" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sendChallengeResult">Challenge result!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="challengeForm" (ngSubmit)="onUpload()">
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="changeComment">Comment</span>
+            </div>
+            <input type="text" class=" form-control" formControlName="comment"
+                   placeholder="{{comment}}" aria-label="Default"
+                   aria-describedby="editComment">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="uploadImage">Upload image</span>
+            </div>
+            <input type="file" class="form-control" (change)="onFileChanged($event)">
+            <!--<img [src]="imgURL" height="200" *ngIf="imgURL">
+            <img [src]="convertedImage" >-->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="clearBuffer()" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="imgURL==null" (click)="onUpload()">Save result</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<img [src]="convertedImage">
 
 <app-footer></app-footer>

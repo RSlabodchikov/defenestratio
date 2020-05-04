@@ -1,21 +1,23 @@
 package com.bsuir.defenestratio.service.implementation;
 
-import com.bsuir.defenestratio.entity.Challenge;
-import com.bsuir.defenestratio.entity.ChallengeResult;
-import com.bsuir.defenestratio.entity.ChallengeStatus;
-import com.bsuir.defenestratio.entity.UserChallenge;
+import com.bsuir.defenestratio.entity.*;
+import com.bsuir.defenestratio.exceptions.IncorrectFileFormatException;
 import com.bsuir.defenestratio.exceptions.NotFoundException;
 import com.bsuir.defenestratio.jpa.UserChallengeRepository;
 import com.bsuir.defenestratio.service.ChallengeService;
 import com.bsuir.defenestratio.service.UserChallengeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 
 @Service
+@Slf4j
 public class UserChallengeServiceImpl implements UserChallengeService {
 
     private UserChallengeRepository userChallengeRepository;
@@ -69,5 +71,21 @@ public class UserChallengeServiceImpl implements UserChallengeService {
     @Override
     public UserChallenge updateUserChallenge(Long userId, Long challengeId, UserChallenge userChallenge) {
         return userChallengeRepository.save(userChallenge);
+    }
+
+    @Override
+    public UserChallenge uploadImageToChallengeResult(MultipartFile file, Long userId, Long challengeId) {
+        UserChallenge userChallenge = findUserChallengeById(userId, challengeId);
+        try {
+            Image image = new Image(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+            userChallenge.getChallengeResult().setImage(image);
+
+            return userChallengeRepository.save(userChallenge);
+        } catch (IOException ex) {
+            log.warn("Cannot get bytes from file {}", file.getOriginalFilename());
+            throw new IncorrectFileFormatException(
+                    String.format("Cannot get bytes from file %s", file.getOriginalFilename()));
+
+        }
     }
 }

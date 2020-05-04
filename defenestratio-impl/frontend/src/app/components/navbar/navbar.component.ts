@@ -9,13 +9,16 @@ import {UserService} from "../../services/user.service";
 })
 export class NavbarComponent implements OnInit {
   authenticated: boolean;
+  timeout: any;
 
   constructor(private router: Router,
               private userService: UserService) {
   }
 
   ngOnInit() {
-    this.authenticated = this.userService.isAuthenticated();
+    this.timeout = setInterval( () => {
+      this.authenticated = this.userService.isAuthenticated();
+    }, 1000);
   }
 
   navigateToUrl(url) {

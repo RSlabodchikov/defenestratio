@@ -13,7 +13,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ChallengesComponent implements OnInit {
 
-  private challenge: ChallengeModel;
+  private challenge: ChallengeModel = new ChallengeModel();
   private challenges: ChallengeModel[] = [];
   private userId: string;
   private roleId: string;
