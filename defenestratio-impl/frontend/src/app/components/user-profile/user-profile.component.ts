@@ -64,4 +64,9 @@ export class UserProfileComponent implements OnInit {
     return this.form.get('lastName');
   }
 
+  removeUserChallenge(challengeId: string) {
+    this.challengeService.removeUserChallenge(this.user.id, challengeId).subscribe();
+    window.location.reload();
+  }
+
 }

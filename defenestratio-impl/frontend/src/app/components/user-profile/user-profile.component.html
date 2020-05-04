@@ -97,6 +97,7 @@
           <p class="text-muted mb-3">comment: {{challenge.challengeResult.comment}}</p>
           <p class="text-muted mb-3">level: {{challenge.challenge.level}}</p>
           <p class="text-muted mb-3">points: {{challenge.challenge.points}}</p>
+          <button type="button" (click)="removeUserChallenge(challenge.challenge.id)" class="btn btn-dark">Cancel</button>
         </li>
       </ul>
     </div>

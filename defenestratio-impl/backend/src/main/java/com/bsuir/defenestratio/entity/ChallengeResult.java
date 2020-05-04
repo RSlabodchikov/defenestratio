@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Table(name = "challenge_results")
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class ChallengeResult {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +28,51 @@ public class ChallengeResult {
 
     @Column(name = "comment")
     private String comment;
+
+
+    public ChallengeResult() {
+    }
+
+    public ChallengeResult(Boolean approved, String comment) {
+        this.approved = approved;
+        this.comment = comment;
+    }
+
+    public ChallengeResult(byte[] resultPicture, Boolean approved, String comment) {
+        this.resultPicture = resultPicture;
+        this.approved = approved;
+        this.comment = comment;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public byte[] getResultPicture() {
+        return resultPicture;
+    }
+
+    public void setResultPicture(byte[] resultPicture) {
+        this.resultPicture = resultPicture;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
