@@ -2,6 +2,19 @@
 
 <!-- Services Section -->
 <section class="page-section" id="challengeList">
+
+  <div class="container">
+    <form [formGroup]="themeForm" (ngSubmit)="pickTheme()">
+      <label class="text-muted">Choose a Theme:
+        <select formControlName="theme">
+          <option>All</option>
+          <option *ngFor="let opt of themes">{{opt}}</option>
+        </select>
+      </label>
+      <button type="submit" class="btn btn-secondary">Pick Theme</button>
+    </form>
+  </div>
+
   <div class="container">
     <div *ngIf=" roleId == 'ADMIN' ">
       <button class="btn btn-dark" id="createbtn" data-toggle="modal" data-target="#createModal">Create Challenge</button>

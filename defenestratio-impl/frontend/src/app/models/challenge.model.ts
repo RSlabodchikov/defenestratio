@@ -5,4 +5,5 @@ export class ChallengeModel {
   fullDescription: string;
   level: string;
   points: string;
+  theme: string;
 }

@@ -28,6 +28,9 @@ public class Challenge {
     @Column(name = "points")
     private Integer points;
 
+    @Column(name = "theme")
+    private String theme;
+
     public Long getId() {
         return id;
     }
@@ -74,5 +77,13 @@ public class Challenge {
 
     public void setPoints(Integer points) {
         this.points = points;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 }

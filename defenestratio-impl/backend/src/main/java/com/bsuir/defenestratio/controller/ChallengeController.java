@@ -60,4 +60,11 @@ public class ChallengeController {
         return new ResponseEntity<>(
                 "Challenge deleted successfully", HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping(value = "/theme")
+    public ResponseEntity findByTheme(@RequestParam String theme){
+        List<Challenge> challenges = challengeService.findAllByTheme(theme);
+        return new ResponseEntity<>(challenges, HttpStatus.OK);
+    }
+
 }

@@ -15,4 +15,6 @@ public interface ChallengeService {
     Challenge findChallengeById(Long challengeId);
 
     void deleteChallenge(Long challengeId);
+
+    List<Challenge> findAllByTheme(String theme);
 }
