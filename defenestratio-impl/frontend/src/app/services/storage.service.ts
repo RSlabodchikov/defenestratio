@@ -9,8 +9,6 @@ export class StorageService {
   private TOKEN_KEY = 'currentToken';
 
   constructor() {
-    localStorage.setItem(this.USER_KEY, null);
-    localStorage.setItem(this.TOKEN_KEY, null);
   }
 
   set currentUser(user: User) {
@@ -18,7 +16,7 @@ export class StorageService {
   }
 
   get currentUser(): User {
-    if (localStorage.getItem(this.USER_KEY).match(null)) {
+    if (localStorage.getItem(this.USER_KEY) == null) {
       return null;
     }
     return JSON.parse(localStorage.getItem(this.USER_KEY));
@@ -29,7 +27,7 @@ export class StorageService {
   }
 
   get currentToken(): string {
-    if (localStorage.getItem(this.TOKEN_KEY).match(null)) {
+    if (localStorage.getItem(this.TOKEN_KEY) == null) {
       return null;
     }
     return JSON.parse(localStorage.getItem(this.TOKEN_KEY));

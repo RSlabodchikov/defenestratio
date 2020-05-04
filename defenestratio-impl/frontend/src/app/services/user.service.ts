@@ -20,8 +20,7 @@ export class UserService {
   }
 
   isAuthenticated(): boolean {
-    const token = this.storageService.currentToken;
-    return token != null;
+    return this.storageService.currentToken != null;
   }
 
   login(user: User): Observable<HttpResponse<User>> {

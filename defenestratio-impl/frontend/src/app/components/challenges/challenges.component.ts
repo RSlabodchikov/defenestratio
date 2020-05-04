@@ -36,12 +36,8 @@ export class ChallengesComponent implements OnInit {
 
   ngOnInit() {
     if (this.userService.isAuthenticated()) {
-      console.log(this.storageService.currentUser);
-      console.log(this.storageService.currentUser.id);
       this.userId = this.storageService.currentUser.id;
       this.roleId = this.storageService.currentUser.role;
-      console.log(this.userId);
-      console.log(this.roleId);
     }
     this.fillChallenges();
   }
