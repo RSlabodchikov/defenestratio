@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserChallengeService {
 
-    UserChallenge createUserChallenge(UserChallenge userChallenge);
+    UserChallenge createUserChallenge(Long userId, Long challengeId);
 
     List<UserChallenge> findAllUserChallenges(Long userId);
 

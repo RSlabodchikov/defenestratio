@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +25,7 @@
     "magnific-popup": "^1.1.0",
     "rxjs": "~6.4.0",
     "select2": "^4.0.13",
+    "sleep-ts": "^0.1.1",
     "tilt": "^0.2.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

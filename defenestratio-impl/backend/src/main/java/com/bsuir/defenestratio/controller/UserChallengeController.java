@@ -1,13 +1,12 @@
 package com.bsuir.defenestratio.controller;
 
-import com.bsuir.defenestratio.entity.UserChallenge;
 import com.bsuir.defenestratio.service.UserChallengeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/{roleId}/users/{userId}/challenges")
+@RequestMapping(value = "/users/{userId}/challenges")
 public class UserChallengeController {
     private UserChallengeService challengeService;
 
@@ -46,8 +45,8 @@ public class UserChallengeController {
     @PostMapping
     public ResponseEntity createUserChallenge(
             @PathVariable(name = "userId") Long userId,
-            @RequestBody UserChallenge userChallenge) {
+            @RequestParam(name = "challengeId") Long challengeId) {
         return new ResponseEntity<>(
-                challengeService.createUserChallenge(userChallenge), HttpStatus.CREATED);
+                challengeService.createUserChallenge(userId, challengeId), HttpStatus.CREATED);
     }
 }

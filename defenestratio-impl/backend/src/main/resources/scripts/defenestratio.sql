@@ -79,10 +79,10 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`users`
 (
     `id`         INT(11) NOT NULL AUTO_INCREMENT,
     `username`   VARCHAR(45) NOT NULL,
-    `password`   VARCHAR(45) NOT NULL,
+    `password`   VARCHAR(255) NOT NULL,
     `role`       VARCHAR(60) NOT NULL,
     `disabled`   TINYINT(1)  NOT NULL,
-    `profile_id` INT(11) NOT NULL,
+    `profile_id` INT(11),
     PRIMARY KEY (`id`),
     INDEX `user_profile_id_idx` (`profile_id` ASC),
     CONSTRAINT `user_profile_id`

@@ -9,10 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
-@RequestMapping("/{roleId}/users")
+@RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
@@ -23,15 +22,13 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity findAllUsers(
-            @PathVariable(name = "roleId") UUID roleId) {
+    public ResponseEntity findAllUsers() {
         final List<User> users = userService.findAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}")
     public ResponseEntity findUser(
-            @PathVariable(name = "roleId") UUID roleId,
             @PathVariable(name = "userId") Long userId) {
         final User user = userService.findUser(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);

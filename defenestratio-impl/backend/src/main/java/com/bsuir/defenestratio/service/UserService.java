@@ -9,6 +9,8 @@ public interface UserService {
 
     User findUser(Long userId);
 
+    User findUserByUsername(String username);
+
     List<User> findAll();
 
     Profile findUserProfile(Long userId);
@@ -16,4 +18,6 @@ public interface UserService {
     void updateUserProfile(Profile profile);
 
     void disable(Long userId);
+
+    User save(User user);
 }
