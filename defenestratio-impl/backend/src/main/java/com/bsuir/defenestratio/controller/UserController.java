@@ -2,6 +2,7 @@ package com.bsuir.defenestratio.controller;
 
 import com.bsuir.defenestratio.entity.Profile;
 import com.bsuir.defenestratio.entity.User;
+import com.bsuir.defenestratio.service.ProfileService;
 import com.bsuir.defenestratio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,16 +16,24 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private ProfileService profileService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ProfileService profileService) {
         this.userService = userService;
+        this.profileService = profileService;
     }
 
     @GetMapping
     public ResponseEntity findAllUsers() {
         final List<User> users = userService.findAll();
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/leaders")
+    public ResponseEntity getProfilesLeaderboard() {
+        final List<Profile> profiles = profileService.getProfilesSortedByRating();
+        return new ResponseEntity<>(profiles, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{userId}")
