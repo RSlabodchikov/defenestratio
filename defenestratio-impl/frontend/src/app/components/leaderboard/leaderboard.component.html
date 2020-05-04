@@ -20,6 +20,9 @@
           <td class="td">{{i + 1}}</td>
           <td class="td">{{profile.firstName}} {{profile.lastName}}</td>
           <td class="td">{{profile.totalPoints}}</td>
+          <div *ngIf=" role == 'ADMIN' ">
+            <button (click)="disableUser(profile.id)" type="button" class="btn btn-dark">Block User</button>
+          </div>
         </tr>
         </tbody>
       </table>

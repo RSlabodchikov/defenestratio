@@ -10,6 +10,7 @@ import {Observable} from "rxjs";
 export class UserService {
   LOGIN_URL = '/api/login';
   REGISTRATION_URL = '/api/register';
+  DISABLE_USER_BY_ID_URL = '/api/users/';
 
   constructor(private httpClient: HttpClient, private storageService: StorageService) {
   }
@@ -29,5 +30,9 @@ export class UserService {
 
   register(user: User): Observable<HttpResponse<User>> {
     return this.httpClient.post<any>(this.REGISTRATION_URL, user, {observe: 'response', responseType: 'json'})
+  }
+
+  disableUser(userId: string) {
+    return this.httpClient.delete(this.DISABLE_USER_BY_ID_URL + userId);
   }
 }

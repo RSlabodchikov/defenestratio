@@ -5,6 +5,7 @@ import {Profile} from "../../models/profile";
 import {UserService} from "../../services/user.service";
 import {StorageService} from "../../services/storage.service";
 import {ProfileService} from "../../services/profile-service/profile.service";
+import {UserProfileComponent} from "../user-profile/user-profile.component";
 
 @Component({
   selector: 'leaderboard',
@@ -15,18 +16,21 @@ export class LeaderboardComponent implements OnInit {
 
   private profileList: Profile[];
   private userId: string;
+  private role: string;
   private profile: Profile;
 
   constructor(private leaderboardService: LeaderboardService,
               private router: Router,
               private storageService: StorageService,
               private userService: UserService,
-              private profileService: ProfileService) {
+              private profileService: ProfileService,
+  ) {
   }
 
   ngOnInit() {
     if (this.userService.isAuthenticated()) {
       this.userId = this.storageService.currentUser.id;
+      this.role = this.storageService.currentUser.role;
       this.profileService.getOneProfile(this.userId).subscribe(response => {
         this.profile = response;
       });
@@ -36,4 +40,7 @@ export class LeaderboardComponent implements OnInit {
     })
   }
 
+  disableUser(profileId: string) {
+    this.userService.disableUser(profileId).subscribe();
+  }
 }
