@@ -34,10 +34,12 @@
           <span class="ml-3">{{profile.rating}}</span>
         </p>
         <hr class="divider my-4">
-        <button class="btn btn-primary btn-xl mt-3" id="editBtn" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button class="btn btn-primary btn-xl mt-3" id="editBtn" data-toggle="modal" data-target="#editModal">Edit
+        </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+             aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -48,24 +50,26 @@
               </div>
               <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="modal-body">
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="editFirstName">First Name</span>
-                      </div>
-                      <input type="text" class="form-control" formControlName="firstName" placeholder="{{profile.firstName}}" aria-label="Default" aria-describedby="editFirstName">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="editFirstName">First Name</span>
                     </div>
-                    <div *ngIf="firstName.hasError('required') && firstName.touched" class="error text-primary">
-                      First Name is required
+                    <input type="text" class="form-control" formControlName="firstName"
+                           placeholder="{{profile.firstName}}" aria-label="Default" aria-describedby="editFirstName">
+                  </div>
+                  <div *ngIf="firstName.hasError('required') && firstName.touched" class="error text-primary">
+                    First Name is required
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="editLastName">Last Name</span>
                     </div>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="editLastName">Last Name</span>
-                      </div>
-                      <input type="text" class="form-control" formControlName="lastName" placeholder="{{profile.lastName}}" aria-label="Default" aria-describedby="editLastName">
-                    </div>
-                    <div *ngIf="lastName.hasError('required') && lastName.touched" class="error text-primary">
-                      Last Name is required
-                    </div>
+                    <input type="text" class="form-control" formControlName="lastName"
+                           placeholder="{{profile.lastName}}" aria-label="Default" aria-describedby="editLastName">
+                  </div>
+                  <div *ngIf="lastName.hasError('required') && lastName.touched" class="error text-primary">
+                    Last Name is required
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -79,6 +83,25 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="page-section" id="challengeList">
+  <div class="container">
+    <h2 class="text-center mt-0">User challenges</h2>
+    <hr class="divider my-4">
+    <div class="row">
+      <ul>
+        <li class="" *ngFor="let challenge of userChallenges">
+          <h3 class="h4 mb-3 alert-primary">Challenge {{challenge.challenge.name}}</h3>
+          <p class="text-muted mb-3 alert-info">{{challenge.status}}</p>
+          <p class="text-muted mb-3">comment: {{challenge.challengeResult.comment}}</p>
+          <p class="text-muted mb-3">level: {{challenge.challenge.level}}</p>
+          <p class="text-muted mb-3">points: {{challenge.challenge.points}}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </section>
 
 <!-- Contact Section -->

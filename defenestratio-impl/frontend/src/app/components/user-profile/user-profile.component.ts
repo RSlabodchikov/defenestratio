@@ -5,6 +5,8 @@ import {Profile} from "../../models/profile";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../services/storage.service";
 import {User} from "../../models/user";
+import {ChallengeService} from "../../services/challenge.service";
+import {UserChallenge} from "../../models/user.challenge";
 
 @Component({
   selector: 'app-user-profile',
@@ -14,6 +16,7 @@ import {User} from "../../models/user";
 export class UserProfileComponent implements OnInit {
   user: User;
   profile: Profile = new Profile();
+  userChallenges: UserChallenge[] = [];
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -23,12 +26,16 @@ export class UserProfileComponent implements OnInit {
   constructor(private router: Router,
               private profileService: ProfileService,
               private route: ActivatedRoute,
-              private storageService: StorageService) {
+              private storageService: StorageService,
+              private challengeService: ChallengeService) {
   }
 
   ngOnInit() {
     this.user = this.storageService.currentUser;
     this.profile = this.user.profile;
+    this.challengeService.getAllUserChallenges(this.user.id).subscribe(userChallenges => {
+      this.userChallenges = userChallenges;
+    })
   }
 
   submit() {

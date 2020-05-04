@@ -1,5 +1,8 @@
 package com.bsuir.defenestratio.service.implementation;
 
+import com.bsuir.defenestratio.entity.Challenge;
+import com.bsuir.defenestratio.entity.ChallengeResult;
+import com.bsuir.defenestratio.entity.ChallengeStatus;
 import com.bsuir.defenestratio.entity.UserChallenge;
 import com.bsuir.defenestratio.exceptions.NotFoundException;
 import com.bsuir.defenestratio.jpa.UserChallengeRepository;
@@ -29,14 +32,16 @@ public class UserChallengeServiceImpl implements UserChallengeService {
     public UserChallenge createUserChallenge(Long userId, Long challengeId) {
         UserChallenge userChallenge = new UserChallenge();
         userChallenge.setUserId(userId);
-        userChallenge.setChallengeId(challengeId);
+        userChallenge.setChallenge(new Challenge(challengeId));
+        userChallenge.setChallengeResult(ChallengeResult.builder()
+                .approved(false).comment("Challenge accepted").build());
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(calendar.getTime());
         calendar.add(Calendar.DAY_OF_MONTH, 7);
 
         userChallenge.setDueDate(new Date(calendar.getTime().getTime()));
-        userChallenge.setStatus("In progress");
+        userChallenge.setStatus(ChallengeStatus.IN_PROGRESS);
 
         return userChallengeRepository.save(userChallenge);
     }
@@ -60,5 +65,10 @@ public class UserChallengeServiceImpl implements UserChallengeService {
     @Override
     public void deleteAllUserChallenges(Long userId) {
         userChallengeRepository.deleteByUserId(userId);
+    }
+
+    @Override
+    public UserChallenge updateUserChallenge(Long userId, Long challengeId, UserChallenge userChallenge) {
+        return userChallengeRepository.save(userChallenge);
     }
 }

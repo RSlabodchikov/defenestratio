@@ -73,7 +73,7 @@ export class ChallengesComponent implements OnInit {
   }
 
   addChallenge(userId: string, challengeId: string) {
-    this.challengeService.addUserChallenge(userId, challengeId);
+    this.challengeService.addUserChallenge(userId, challengeId).subscribe( );
     this.fillChallenges();
     window.location.reload();
   }

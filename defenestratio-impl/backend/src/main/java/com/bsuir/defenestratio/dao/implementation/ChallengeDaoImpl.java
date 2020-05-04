@@ -27,7 +27,7 @@ public class ChallengeDaoImpl implements ChallengeDao {
         List<Challenge> challenges = challengeRepository.findAll();
         List<UserChallenge> userChallenges = userChallengeRepository.findAllByUserId(userId);
 
-        userChallenges.forEach(userChallenge -> challenges.removeIf(challenge -> challenge.getId().equals(userChallenge.getChallengeId())));
+        userChallenges.forEach(userChallenge -> challenges.removeIf(challenge -> challenge.getId().equals(userChallenge.getChallenge().getId())));
         return challenges;
     }
 }
