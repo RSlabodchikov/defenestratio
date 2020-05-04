@@ -79,8 +79,8 @@ export class ChallengesComponent implements OnInit {
   }
 
   deleteChallenge(challengeId: string): void {
-    this.challengeService.deleteChallenge(challengeId).subscribe(response => {
-      this.challengeService.getAllChallenges();
+    this.challengeService.deleteChallenge(challengeId).subscribe(() => {
+      location.reload();
     });
   }
 
@@ -108,13 +108,15 @@ export class ChallengesComponent implements OnInit {
 
   save() {
     if(this.form.valid) {
-      this.challenge.id = this.challenges[this.challenges.length-1].id + 1;
-      this.challenge.name = this.name.value;
-      this.challenge.shortDescription = this.shortDescription.value;
-      this.challenge.fullDescription = this.fullDescription.value;
-      this.challenge.level = this.level.value;
-      this.challenge.points = this.points.value;
-      this.saveChallenge();
+      this.challengeService.getAllChallenges().subscribe(temp => {
+        this.challenge.id = temp[temp.length - 1].id + 1;
+        this.challenge.name = this.name.value;
+        this.challenge.shortDescription = this.shortDescription.value;
+        this.challenge.fullDescription = this.fullDescription.value;
+        this.challenge.level = this.level.value;
+        this.challenge.points = this.points.value;
+        this.saveChallenge();
+      });
     }
   }
 
