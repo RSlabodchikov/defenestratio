@@ -9,6 +9,8 @@ export class StorageService {
   private TOKEN_KEY = 'currentToken';
 
   constructor() {
+    localStorage.setItem(this.USER_KEY, null);
+    localStorage.setItem(this.TOKEN_KEY, null);
   }
 
   set currentUser(user: User) {
