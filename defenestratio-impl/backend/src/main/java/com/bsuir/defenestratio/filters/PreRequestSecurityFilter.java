@@ -33,7 +33,9 @@ public class PreRequestSecurityFilter extends OncePerRequestFilter {
             FilterChain filterChain) throws ServletException, IOException {
         if (request.getRequestURI().contains("login")
                 || (request.getRequestURI().contains("register"))
-                || (request.getRequestURI().endsWith("challenges") && request.getMethod().equals("GET"))) {
+                || (request.getRequestURI().endsWith("challenges")
+                && request.getMethod().equals("GET")
+                && !request.getRequestURI().contains("users"))) {
             filterChain.doFilter(request, response);
             return;
         }

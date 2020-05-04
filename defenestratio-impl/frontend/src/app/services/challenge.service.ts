@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ChallengeModel} from "../models/challenge.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {UserChallenge} from "../models/user.challenge";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {Observable} from "rxjs";
 export class ChallengeService {
   private GET_ALL_CHALLENGES_URI = "/api/challenges";
   private GET_ALL_CHALLENGES_FOR_USER_URI = "/api/challenges/user";
-  private CREATE_USER_CHALLENGE_URI = "/api/users/";
+  private USER_CHALLENGES_URI = "/api/users/";
   private UPDATE_CHALLENGE_URL = "/api/challenges/update?";
   private CREATE_CHALLENGE_URI = "/api/challenges?";
   private DELETE_CHALLENGE_URI = "/api/challenges/";
@@ -39,10 +40,14 @@ export class ChallengeService {
     return this.httpClient.post(this.UPDATE_CHALLENGE_URL, challenge);
   }
 
-  addUserChallenge(userId: string, challengeId: string) {
+  addUserChallenge(userId: string, challengeId: string): Observable<any> {
     let body = new HttpParams();
     body = body.set('challengeId', challengeId);
-    this.httpClient.post(this.CREATE_USER_CHALLENGE_URI + userId + "/challenges", body).subscribe();
+    return this.httpClient.post(this.USER_CHALLENGES_URI + userId + "/challenges", body);
+  }
+
+  getAllUserChallenges(userId: string): Observable<UserChallenge[]> {
+    return this.httpClient.get<UserChallenge[]>(this.USER_CHALLENGES_URI + userId + "/challenges");
   }
 
 }

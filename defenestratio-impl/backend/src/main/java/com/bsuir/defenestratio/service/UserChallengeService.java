@@ -15,4 +15,6 @@ public interface UserChallengeService {
     void deleteUserChallenge(Long userId, Long challengeId);
 
     void deleteAllUserChallenges(Long userId);
+
+    UserChallenge updateUserChallenge(Long userId, Long challengeId, UserChallenge userChallenge);
 }
