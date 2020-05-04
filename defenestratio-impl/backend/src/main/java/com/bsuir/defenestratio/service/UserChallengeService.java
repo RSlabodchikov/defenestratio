@@ -1,6 +1,7 @@
 package com.bsuir.defenestratio.service;
 
 import com.bsuir.defenestratio.entity.UserChallenge;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface UserChallengeService {
     void deleteAllUserChallenges(Long userId);
 
     UserChallenge updateUserChallenge(Long userId, Long challengeId, UserChallenge userChallenge);
+
+    UserChallenge uploadImageToChallengeResult(MultipartFile file, Long userId, Long challengeId);
 }

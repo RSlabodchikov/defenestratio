@@ -1,6 +1,6 @@
 export class ChallengeResult {
   id: string;
-  resultPicture: string;
+  image: any;
   approved: boolean;
   comment: string;
 }

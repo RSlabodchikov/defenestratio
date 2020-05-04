@@ -7,6 +7,7 @@ import {StorageService} from "../../services/storage.service";
 import {User} from "../../models/user";
 import {ChallengeService} from "../../services/challenge.service";
 import {UserChallenge} from "../../models/user.challenge";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-user-profile',
@@ -17,17 +18,29 @@ export class UserProfileComponent implements OnInit {
   user: User;
   profile: Profile = new Profile();
   userChallenges: UserChallenge[] = [];
+  tempUserChallenge: UserChallenge;
+  comment: string;
+  public selectedFile;
+  imgURL: any;
+  receivedImageData: any;
+  base64Data: any;
+  convertedImage: any;
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required)
   });
 
+  challengeForm: FormGroup = new FormGroup({
+    comment: new FormControl('')
+  });
+
   constructor(private router: Router,
               private profileService: ProfileService,
               private route: ActivatedRoute,
               private storageService: StorageService,
-              private challengeService: ChallengeService) {
+              private challengeService: ChallengeService,
+              private httpClient: HttpClient) {
   }
 
   ngOnInit() {
@@ -46,6 +59,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  sendResult() {
+
+  }
+
   updateProfile() {
     this.profileService.updateProfile(this.profile, this.user.id).subscribe(data => {
       this.redirect('/profile');
@@ -62,6 +79,41 @@ export class UserProfileComponent implements OnInit {
 
   get lastName() {
     return this.form.get('lastName');
+  }
+
+  setChallenge(challenge: UserChallenge) {
+    this.tempUserChallenge = challenge;
+  }
+
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+
+    // Below part is used to display the selected image
+    let reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event2) => {
+      this.imgURL = reader.result;
+    };
+
+  }
+
+  onUpload() {
+    const uploadData = new FormData();
+    uploadData.append('image', this.selectedFile, this.selectedFile.name);
+
+    this.challengeService.uploadImageToChallengeResult(uploadData, this.user.id, this.tempUserChallenge.id)
+      .subscribe(res => {
+        console.log(res);
+        this.receivedImageData = res.challengeResult.image.picture;
+        this.base64Data = this.receivedImageData;
+        this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
+      })
+  }
+
+  clearBuffer() {
+    this.comment = null;
+    this.imgURL = null;
+    this.selectedFile = null;
   }
 
   removeUserChallenge(challengeId: string) {

@@ -18,16 +18,38 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge`
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = latin1;
 
+
+-- -----------------------------------------------------
+-- Table `defenestratio`.`images`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `defenestratio`.`images`
+(
+    `id`      INT(11) NOT NULL AUTO_INCREMENT,
+    `name`    VARCHAR(45) NULL DEFAULT NULL,
+    `type`    VARCHAR(45) NULL DEFAULT NULL,
+    `picture` LONGBLOB    NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = latin1;
+
+
 -- -----------------------------------------------------
 -- Table `defenestratio`.`challenge_results`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge_results`
 (
     `id`       INT(11) NOT NULL AUTO_INCREMENT,
-    `result_picture` LONGBLOB    NULL DEFAULT NULL,
+    `image_id` INT(11) NULL,
     `approved` TINYINT(1)  NOT NULL,
     `comment`  VARCHAR(45) NULL     DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    INDEX `result_image_idx` (`image_id` ASC),
+    CONSTRAINT `result_image`
+        FOREIGN KEY (`image_id`)
+            REFERENCES `defenestratio`.`images` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
 )
     ENGINE = InnoDB
     DEFAULT CHARACTER SET = latin1;
