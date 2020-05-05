@@ -43,4 +43,11 @@ export class LeaderboardComponent implements OnInit {
   disableUser(profileId: string) {
     this.userService.disableUser(profileId).subscribe();
   }
+
+  unlockUser(profileId: string) {
+    this.userService.getUser(profileId).subscribe(user => {
+      this.userService.unlockUser(profileId, user).subscribe();
+    })
+
+  }
 }

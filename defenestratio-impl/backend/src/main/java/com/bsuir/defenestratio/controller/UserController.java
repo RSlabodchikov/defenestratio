@@ -55,6 +55,12 @@ public class UserController {
         return new ResponseEntity<>("User disabled successfully", HttpStatus.NO_CONTENT);
     }
 
+    @PostMapping
+    public ResponseEntity unblockUser(@RequestBody User user) {
+        userService.unlockUser(user);
+        return new ResponseEntity<>("User unlocked successfully", HttpStatus.NO_CONTENT);
+    }
+
     @PostMapping(value = "/{userId}/profile")
     public ResponseEntity updateUserProfile(
             @RequestBody Profile profile, @PathVariable(name = "userId") Long userId) {

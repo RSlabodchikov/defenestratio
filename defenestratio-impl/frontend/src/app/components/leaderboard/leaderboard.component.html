@@ -23,6 +23,7 @@
           <td class="td">{{profile.totalPoints}}</td>
           <td *ngIf=" role == 'ADMIN' ">
             <button (click)="disableUser(profile.id)" type="button" class="td btn btn-dark">Block</button>
+            <button (click)="unlockUser(profile.id)" type="button" class="td btn btn-dark">Unlock</button>
           </td>
         </tr>
         </tbody>

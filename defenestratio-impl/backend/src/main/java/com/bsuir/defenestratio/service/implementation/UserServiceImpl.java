@@ -86,6 +86,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void unlockUser(User user) {
+        user.setDisabled(false);
+      userRepository.save(user);
+    }
+
+    @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
