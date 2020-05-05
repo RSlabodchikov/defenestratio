@@ -13,16 +13,17 @@
           <th class="th">Position</th>
           <th class="th">Name</th>
           <th class="th">Points</th>
+          <th *ngIf=" role == 'ADMIN' "class="th">Block user</th>
         </tr>
         </thead>
-        <tbody class="tbody">
+        <tbody class="tbody mb-5">
         <tr class="tr" *ngFor="let profile of profileList; let i = index">
           <td class="td">{{i + 1}}</td>
           <td class="td">{{profile.firstName}} {{profile.lastName}}</td>
           <td class="td">{{profile.totalPoints}}</td>
-          <div *ngIf=" role == 'ADMIN' ">
-            <button (click)="disableUser(profile.id)" type="button" class="btn btn-dark">Block User</button>
-          </div>
+          <td *ngIf=" role == 'ADMIN' ">
+            <button (click)="disableUser(profile.id)" type="button" class="td btn btn-dark">Block</button>
+          </td>
         </tr>
         </tbody>
       </table>

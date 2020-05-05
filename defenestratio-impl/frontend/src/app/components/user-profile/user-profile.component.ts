@@ -107,7 +107,8 @@ export class UserProfileComponent implements OnInit {
         this.receivedImageData = res.challengeResult.image.picture;
         this.base64Data = this.receivedImageData;
         this.convertedImage = 'data:image/jpeg;base64,' + this.base64Data;
-      })
+        window.location.reload();
+      });
   }
 
   clearBuffer() {

@@ -88,6 +88,9 @@
 <section class="page-section" id="challengeList">
   <div class="container  col-lg-3">
     <h2 class="text-center mt-3">User challenges</h2>
+    <div class="alert alert-warning" role="alert" *ngIf="userChallenges.length==0">
+      <p>You have no challenges accepted</p>
+    </div>
     <div class="row">
       <ul>
         <li class="" *ngFor="let challenge of userChallenges">
