@@ -49,6 +49,7 @@
           <h3 class="h4 mb-3">{{challenge.name}}</h3>
           <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
           <p class="text-muted mb-3"> {{challenge.fullDescription}}</p>
+          <p class="text-muted mb-2"> {{challenge.theme}}</p>
           <p class="text-muted mb-2"> {{challenge.points}} points</p>
           <div *ngIf="userId != null && roleId == 'ADMIN' ">
             <button class="btn btn-dark" id="editBtn2" (click)="saveChallenge2(challenge)" data-toggle="modal" data-target="#editModal">Edit</button>
@@ -70,6 +71,7 @@
           <h3 class="h4 mb-3">{{challenge.name}}</h3>
           <p class="text-muted mb-3"> {{challenge.shortDescription}}</p>
           <p class="text-muted mb-3"> {{challenge.fullDescription}}</p>
+          <p class="text-muted mb-2"> {{challenge.theme}}</p>
           <p class="text-muted mb-2"> {{challenge.points}} points</p>
           <div *ngIf="userId != null && roleId == 'ADMIN' ">
           <button class="btn btn-dark" id="editBtn3" (click)="saveChallenge2(challenge)" data-toggle="modal" data-target="#editModal">Edit</button>
@@ -189,7 +191,7 @@
         <div class="modal-body">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="createFirstName">First Name</span>
+              <span class="input-group-text" id="createFirstName">Challenge name</span>
             </div>
             <input type="text" class="form-control" formControlName="name" placeholder="{{challenge.name}}" aria-label="Default" aria-describedby="createFirstName">
           </div>
@@ -219,6 +221,15 @@
               <span class="input-group-text" id="createLevel">Level</span>
             </div>
             <input type="text" class="form-control" formControlName="level" placeholder="{{challenge.level}}" aria-label="Default" aria-describedby="createLevel">
+          </div>
+          <div *ngIf="level.hasError('required') && level.touched" class="error text-primary">
+            Level is required
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="setTheme">Theme</span>
+            </div>
+            <input type="text" class="form-control" formControlName="level" placeholder="{{challenge.theme}}" aria-label="Default" aria-describedby="createTheme">
           </div>
           <div *ngIf="level.hasError('required') && level.touched" class="error text-primary">
             Level is required

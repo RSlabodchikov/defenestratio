@@ -30,7 +30,7 @@ public class JwtTokenUtils {
                 .signWith(SignatureAlgorithm.HS256, "dfstr")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()
-                        + 999999))
+                        + 9999999))
                 .compact();
     }
 
