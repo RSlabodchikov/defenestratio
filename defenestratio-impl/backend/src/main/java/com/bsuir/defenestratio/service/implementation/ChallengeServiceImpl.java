@@ -42,4 +42,9 @@ public class ChallengeServiceImpl implements ChallengeService {
     public void deleteChallenge(Long challengeId) {
          challengeRepository.deleteById(challengeId);
     }
+
+    @Override
+    public List<Challenge> findAllByTheme(String theme){
+        return challengeRepository.findAllByTheme(theme);
+    }
 }

@@ -15,6 +15,8 @@ export class ChallengesComponent implements OnInit {
 
   private challenge: ChallengeModel = new ChallengeModel();
   private challenges: ChallengeModel[] = [];
+  private themes: string[] = [];
+  private allChallenges: ChallengeModel[] = [];
   private userId: string;
   private roleId: string;
   private challengesLevel1: ChallengeModel[] = [];
@@ -26,6 +28,10 @@ export class ChallengesComponent implements OnInit {
     fullDescription: new FormControl('',Validators.required),
     points: new FormControl('',Validators.required),
     level: new FormControl('',Validators.required)
+  });
+
+  themeForm: FormGroup = new FormGroup({
+    theme: new FormControl('')
   });
 
   constructor(private challengeService: ChallengeService,
@@ -47,6 +53,12 @@ export class ChallengesComponent implements OnInit {
       this.challengeService.getAllChallengesAvailableForUser(this.userId).subscribe(response => {
         this.challenges = response;
         this.challenge = this.challenges[0];
+        this.allChallenges = this.challenges;
+        for (let i in this.challenges) {
+          if(!this.themes.includes(this.challenges[i].theme)) {
+            this.themes.push(this.challenges[i].theme);
+          }
+        }
         this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
         this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
         this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
@@ -55,6 +67,12 @@ export class ChallengesComponent implements OnInit {
       this.challengeService.getAllChallenges().subscribe(response => {
         this.challenges = response;
         this.challenge = this.challenges[0];
+        this.allChallenges = this.challenges;
+        for (let i in this.challenges) {
+          if(!this.themes.includes(this.challenges[i].theme)) {
+            this.themes.push(this.challenges[i].theme);
+          }
+        }
         this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
         this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
         this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
@@ -124,6 +142,36 @@ export class ChallengesComponent implements OnInit {
     this.challengeService.createChallenge(this.challenge).subscribe(response => {
       location.reload();
     })
+  }
+
+  pickTheme() {
+    let theme = this.themeForm.get('theme').value;
+    if (theme === 'All') {
+      this.fillChallenges();
+    }
+    else {
+      // this.challengeService.getThemeChallenges(theme).subscribe(response => {
+      //   this.challenges = response;
+      //   this.challenge = this.challenges[0];
+      //   for (let i in this.challenges) {
+      //     if(!this.themes.includes(this.challenges[i].theme)) {
+      //       this.themes.push(this.challenges[i].theme);
+      //     }
+      //   }
+      //   this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
+      //   this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
+      //   this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
+      // });
+      this.challenges = [];
+      this.allChallenges.forEach(challenge => {
+        if (challenge.theme == theme) {
+          this.challenges.push(challenge);
+        }
+      });
+      this.challengesLevel1 = this.getChallengesByLvl(this.challenges, "1");
+      this.challengesLevel2 = this.getChallengesByLvl(this.challenges, "2");
+      this.challengesLevel3 = this.getChallengesByLvl(this.challenges, "3");
+    }
   }
 
   get name() { return this.form.get('name'); }

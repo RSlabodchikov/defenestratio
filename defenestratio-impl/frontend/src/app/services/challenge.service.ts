@@ -14,6 +14,7 @@ export class ChallengeService {
   private UPDATE_CHALLENGE_URL = "/api/challenges/update?";
   private CREATE_CHALLENGE_URI = "/api/challenges?";
   private DELETE_CHALLENGE_URI = "/api/challenges/";
+  private GET_THEME_CHALLENGES_URI = "/api/challenges/theme";
 
   constructor(private httpClient: HttpClient) {
   }
@@ -56,6 +57,12 @@ export class ChallengeService {
 
   uploadImageToChallengeResult(file: FormData, userId: string, challengeId: string): Observable<UserChallenge> {
     return this.httpClient.put<UserChallenge>(this.USER_CHALLENGES_URI + userId + "/challenges/" + challengeId + "/image", file);
+  }
+
+  getThemeChallenges(theme: string) {
+    let body = new HttpParams();
+    body = body.set('theme', theme);
+    return this.httpClient.get<ChallengeModel[]>(this.GET_THEME_CHALLENGES_URI, {params: body})
   }
 
 }

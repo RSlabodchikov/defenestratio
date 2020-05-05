@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS `defenestratio`.`challenge`
     `full_description` varchar(255)    NULL DEFAULT NULL,
     `level`       INT(11)     NULL DEFAULT NULL,
     `points`      INT(11)     NULL DEFAULT NULL,
+    `theme`       varchar(255) NULL DEFAULT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
