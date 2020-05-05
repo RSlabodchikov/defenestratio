@@ -29,7 +29,7 @@ export class ChallengeService {
   }
 
   createChallenge(challenge: ChallengeModel): Observable<ChallengeModel> {
-    return this.httpClient.post<ChallengeModel>(this.CREATE_CHALLENGE_URI,challenge);
+    return this.httpClient.post<ChallengeModel>(this.CREATE_CHALLENGE_URI, challenge);
   }
 
   deleteChallenge(challengeId: string) {
@@ -52,6 +52,10 @@ export class ChallengeService {
 
   removeUserChallenge(userId: string, challengeId: string): Observable<any> {
     return this.httpClient.delete(this.USER_CHALLENGES_URI + userId + "/challenges/" + challengeId);
+  }
+
+  uploadImageToChallengeResult(file: FormData, userId: string, challengeId: string): Observable<UserChallenge> {
+    return this.httpClient.put<UserChallenge>(this.USER_CHALLENGES_URI + userId + "/challenges/" + challengeId + "/image", file);
   }
 
 }
