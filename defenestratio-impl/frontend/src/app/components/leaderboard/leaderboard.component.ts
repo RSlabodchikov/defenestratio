@@ -5,7 +5,6 @@ import {Profile} from "../../models/profile";
 import {UserService} from "../../services/user.service";
 import {StorageService} from "../../services/storage.service";
 import {ProfileService} from "../../services/profile-service/profile.service";
-import {UserProfileComponent} from "../user-profile/user-profile.component";
 
 @Component({
   selector: 'leaderboard',
