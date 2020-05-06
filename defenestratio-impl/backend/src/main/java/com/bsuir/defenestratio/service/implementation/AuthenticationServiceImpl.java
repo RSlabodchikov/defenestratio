@@ -7,7 +7,9 @@ import com.bsuir.defenestratio.service.AuthenticationService;
 import com.bsuir.defenestratio.service.UserService;
 import com.bsuir.defenestratio.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -28,9 +30,16 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(User user) {
         User foundUser = userService.findUserByUsername(user.getUsername());
+        if (foundUser == null) {
+            throw new AuthenticationCredentialsNotFoundException("Cannot find user with such username");
+        }
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 UserUtils.buildUserDetails(foundUser), user.getPassword(), UserUtils.buildAuthority(foundUser.getRole())
         );
+
+        if(foundUser.getDisabled()) {
+            throw new LockedException("Your account is blocked, please contact administrator");
+        }
 
         authenticationManager.authenticate(authenticationToken);
 

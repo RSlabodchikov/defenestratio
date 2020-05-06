@@ -7,6 +7,7 @@ import com.bsuir.defenestratio.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +28,10 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void updateProfile(Profile profile) {
         profileRepository.save(profile);
+    }
+
+    @Override
+    public List<Profile> getProfilesSortedByRating() {
+        return profileRepository.findAllByOrderByTotalPointsDesc();
     }
 }

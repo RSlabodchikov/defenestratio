@@ -1,12 +1,14 @@
 package com.bsuir.defenestratio.entity;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "challenge")
 @Data
+@RequiredArgsConstructor
 public class Challenge {
 
     @Id
@@ -27,6 +29,13 @@ public class Challenge {
 
     @Column(name = "points")
     private Integer points;
+
+    @Column(name = "theme")
+    private String theme;
+
+    public Challenge(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -74,5 +83,13 @@ public class Challenge {
 
     public void setPoints(Integer points) {
         this.points = points;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
     }
 }

@@ -11,60 +11,44 @@
         <thead class="table thead-light">
         <tr class="tr">
           <th class="th">Position</th>
-          <th class="th">Nickname</th>
+          <th class="th">Name</th>
           <th class="th">Points</th>
+          <th *ngIf=" role == 'ADMIN' "class="th">Block user</th>
         </tr>
         </thead>
-        <tbody class="tbody">
-        <tr class="tr">
-          <td class="td">1</td>
-          <td class="td">George Sulejmanov</td>
-          <td class="td">322</td>
-        </tr>
-        <tr class="tr">
-          <td class="td">2</td>
-          <td class="td">Anastasia Khristophorova</td>
-          <td class="td">289</td>
-        </tr>
-        <tr class="tr">
-          <td class="td">3</td>
-          <td class="td">Alexey Pasevik</td>
-          <td class="td">144</td>
-        </tr>
-        <tr class="tr">
-          <td class="td">4</td>
-          <td class="td">Roman Slabodchik</td>
-          <td class="td">143</td>
-        </tr>
-        <tr class="tr">
-          <td class="td">5</td>
-          <td class="td">Alexander Sachko</td>
-          <td class="td">-13</td>
+        <tbody class="tbody mb-5">
+        <tr class="tr" *ngFor="let profile of profileList; let i = index">
+          <td class="td">{{i + 1}}</td>
+          <td class="td">{{profile.firstName}} {{profile.lastName}}</td>
+          <td class="td">{{profile.totalPoints}}</td>
+          <td *ngIf=" role == 'ADMIN' ">
+            <button (click)="disableUser(profile.id)" type="button" class="td btn btn-dark">Block</button>
+            <button (click)="unlockUser(profile.id)" type="button" class="td btn btn-dark">Unlock</button>
+          </td>
         </tr>
         </tbody>
       </table>
-
     </div>
-    <h2 class="text-center mt-0">Your Position</h2>
-    <hr class="divider my-4">
-    <div class="row">
+    <div *ngIf="userId != null">
+      <h2 class="text-center mt-0">Your Points</h2>
+      <hr class="divider my-4">
+      <div class="row">
 
-      <table class="table table-bordered">
-        <thead class="table thead-light">
-        <tr class="tr">
-          <th class="th">Position</th>
-          <th class="th">Nickname</th>
-          <th class="th">Points</th>
-        </tr>
-        </thead>
-        <tbody class="tbody">
-        <tr class="tr">
-          <td class="td">1</td>
-          <td class="td">George Sulejmanov</td>
-          <td class="td">322</td>
-        </tr>
-        </tbody>
-      </table>
+        <table class="table table-bordered">
+          <thead class="table thead-light">
+          <tr class="tr">
+            <th class="th">Name</th>
+            <th class="th">Points</th>
+          </tr>
+          </thead>
+          <tbody class="tbody">
+          <tr class="tr">
+            <td class="td">{{profile.firstName}} {{profile.lastName}}</td>
+            <td class="td">{{profile.totalPoints}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

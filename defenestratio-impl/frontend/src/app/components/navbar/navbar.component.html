@@ -15,9 +15,6 @@
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" (click)="navigateToUrl('challenges')">Challenge List</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="chat.html">Chat</a>
-        </li>
         <li class="nav-item" [hidden]="authenticated">
           <a class="nav-link js-scroll-trigger" (click)="navigateToUrl('login')">Log in</a>
         </li>
@@ -43,7 +40,7 @@
       <div class="col-lg-8 align-self-baseline">
         <p class="text-white-75 font-weight-light mb-5">Thousands of members, large amount of different challenges, tons
           of fun and more other things with Defestratio</p>
-        <a class="btn btn-primary btn-xl js-scroll-trigger" href="#">START HAVING FUN</a>
+        <a class="btn btn-primary btn-xl js-scroll-trigger" (click)="navigateToUrl('/signup')">START HAVING FUN</a>
       </div>
     </div>
   </div>

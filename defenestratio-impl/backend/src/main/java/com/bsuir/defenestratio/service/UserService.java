@@ -19,5 +19,7 @@ public interface UserService {
 
     void disable(Long userId);
 
+    void unlockUser(User user);
+
     User save(User user);
 }

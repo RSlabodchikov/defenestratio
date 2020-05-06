@@ -34,10 +34,12 @@
           <span class="ml-3">{{profile.rating}}</span>
         </p>
         <hr class="divider my-4">
-        <button class="btn btn-primary btn-xl mt-3" id="editBtn" data-toggle="modal" data-target="#editModal">Edit</button>
+        <button class="btn btn-primary btn-xl mt-3" id="editBtn" data-toggle="modal" data-target="#editModal">Edit
+        </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+             aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -48,24 +50,26 @@
               </div>
               <form [formGroup]="form" (ngSubmit)="submit()">
                 <div class="modal-body">
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="editFirstName">First Name</span>
-                      </div>
-                      <input type="text" class="form-control" formControlName="firstName" placeholder="{{profile.firstName}}" aria-label="Default" aria-describedby="editFirstName">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="editFirstName">First Name</span>
                     </div>
-                    <div *ngIf="firstName.hasError('required') && firstName.touched" class="error text-primary">
-                      First Name is required
+                    <input type="text" class="form-control" formControlName="firstName"
+                           placeholder="{{profile.firstName}}" aria-label="Default" aria-describedby="editFirstName">
+                  </div>
+                  <div *ngIf="firstName.hasError('required') && firstName.touched" class="error text-primary">
+                    First Name is required
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="editLastName">Last Name</span>
                     </div>
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="editLastName">Last Name</span>
-                      </div>
-                      <input type="text" class="form-control" formControlName="lastName" placeholder="{{profile.lastName}}" aria-label="Default" aria-describedby="editLastName">
-                    </div>
-                    <div *ngIf="lastName.hasError('required') && lastName.touched" class="error text-primary">
-                      Last Name is required
-                    </div>
+                    <input type="text" class="form-control" formControlName="lastName"
+                           placeholder="{{profile.lastName}}" aria-label="Default" aria-describedby="editLastName">
+                  </div>
+                  <div *ngIf="lastName.hasError('required') && lastName.touched" class="error text-primary">
+                    Last Name is required
+                  </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -79,6 +83,31 @@
       </div>
     </div>
   </div>
+</section>
+
+<section class="page-section" id="challengeList">
+  <div class="container  col-lg-3">
+    <h2 class="text-center mt-3">User challenges</h2>
+    <div class="alert alert-warning" role="alert" *ngIf="userChallenges.length==0">
+      <p>You have no challenges accepted</p>
+    </div>
+    <div class="row">
+      <ul>
+        <li class="" *ngFor="let challenge of userChallenges">
+          <hr class=" divider my-4">
+          <h3 class="h4 mb-3 ">{{challenge.challenge.name}}</h3>
+          <p class="text-muted  mb-3">{{challenge.status}}</p>
+          <p class="text-muted mb-3">comment: {{challenge.challengeResult.comment}}</p>
+          <p class="text-muted mb-3">level: {{challenge.challenge.level}}</p>
+          <p class="text-muted mb-3">points: {{challenge.challenge.points}}</p>
+          <button class="btn btn-primary" data-toggle="modal" data-target="#challengeResult"
+             (click)="setChallenge(challenge)">Send result</button>
+          <button class="btn btn-dark" (click)="removeUserChallenge(challenge.challenge.id)" >Cancel</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
 </section>
 
 <!-- Contact Section -->
@@ -103,5 +132,46 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade"  id="challengeResult" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="sendChallengeResult">Challenge result!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="challengeForm" (ngSubmit)="onUpload()">
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="changeComment">Comment</span>
+            </div>
+            <input type="text" class=" form-control" formControlName="comment"
+                   placeholder="{{comment}}" aria-label="Default"
+                   aria-describedby="editComment">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="uploadImage">Upload image</span>
+            </div>
+            <input type="file" class="form-control" (change)="onFileChanged($event)">
+            <!--<img [src]="imgURL" height="200" *ngIf="imgURL">
+            <img [src]="convertedImage" >-->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="clearBuffer()" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" [disabled]="imgURL==null" (click)="onUpload()">Save result</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<img [src]="convertedImage">
 
 <app-footer></app-footer>

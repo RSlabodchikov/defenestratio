@@ -16,7 +16,7 @@ export class StorageService {
   }
 
   get currentUser(): User {
-    if (localStorage.getItem(this.USER_KEY).match(null)) {
+    if (localStorage.getItem(this.USER_KEY) == null) {
       return null;
     }
     return JSON.parse(localStorage.getItem(this.USER_KEY));
@@ -27,7 +27,7 @@ export class StorageService {
   }
 
   get currentToken(): string {
-    if (localStorage.getItem(this.TOKEN_KEY).match(null)) {
+    if (localStorage.getItem(this.TOKEN_KEY) == null) {
       return null;
     }
     return JSON.parse(localStorage.getItem(this.TOKEN_KEY));
