@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Profile} from "../../models/profile";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {User} from "../../models/user";
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,8 @@ export class ProfileService {
     return this.http.get<Profile>(this.profileUrl + id + '/profile');
   }
 
-  public updateProfile(profile: Profile, id: string) {
-    return this.http.post(this.profileUrl + id + '/profile', profile);
+  public updateProfile(profile: Profile, id: string): Observable<HttpResponse<any>>{
+    return this.http.post<HttpResponse<any>>(this.profileUrl + id + '/profile', profile);
   }
 
 }

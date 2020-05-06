@@ -64,9 +64,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfile() {
-    this.profileService.updateProfile(this.profile, this.user.id).subscribe(data => {
-      this.redirect('/profile');
+    this.profileService.updateProfile(this.profile, this.user.id).subscribe(resp => {
     });
+    this.user.profile = this.profile;
+    this.storageService.currentUser = this.user;
+    window.location.reload();
   }
 
   redirect(url: string) {

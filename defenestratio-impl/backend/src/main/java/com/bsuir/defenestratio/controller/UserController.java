@@ -65,6 +65,6 @@ public class UserController {
     public ResponseEntity updateUserProfile(
             @RequestBody Profile profile, @PathVariable(name = "userId") Long userId) {
         userService.updateUserProfile(profile);
-        return new ResponseEntity<>("User profile updated", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>("User profile updated", HttpStatus.OK);
     }
 }
