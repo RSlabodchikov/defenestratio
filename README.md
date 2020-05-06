@@ -31,6 +31,7 @@
 3. [Часть 3](#part3) <br>
 3.1 [Сравнение и анализ](#compare_and_analysis) <br>
 3.2 [Пути улучшения архитектуры](#way_upgrade) <br>
+4. [Ссылки](#links)
 
 
 ## Часть 1 <a name="part1"></a>
@@ -109,4 +110,7 @@
 
 **2. Пути улучшения архитектуры** <a name="way_upgrade"/></a>
 Возможно внедрение шаблона посредника для взаимодействия некоторых компонентов.
+
+## Ссылки <a name="links"/></a>
+**1. Ux Improvements** https://github.com/RSlabodchikov/defenestratio/blob/master/Documentation/UxImprovement/UxImprovement.md
 
